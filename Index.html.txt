@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Atif & Isma Wedding RSVP</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'Montserrat', sans-serif;
+      background:#f7f3ee;
+      color:#2b2b2b;
+      line-height:1.7;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    section{
+      padding:100px 10%;
+    }
+
+    .hero{
+      height:100vh;
+      background:
+        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+        url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1600&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      color:white;
+    }
+
+    .hero-content h1{
+      font-family:'Cormorant Garamond', serif;
+      font-size:5rem;
+      font-weight:500;
+      letter-spacing:4px;
+    }
+
+    .hero-content p{
+      margin-top:15px;
+      font-size:1.1rem;
+      letter-spacing:3px;
+    }
+
+    .hero-content .date{
+      margin-top:25px;
+      font-size:1rem;
+      border:1px solid rgba(255,255,255,0.5);
+      display:inline-block;
+      padding:10px 25px;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:50px;
+    }
+
+    .section-title h2{
+      font-family:'Cormorant Garamond', serif;
+      font-size:3rem;
+      font-weight:500;
+      margin-bottom:10px;
+    }
+
+    .section-title p{
+      color:#777;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      font-size:0.8rem;
+    }
+
+    .story{
+      max-width:900px;
+      margin:auto;
+      text-align:center;
+      font-size:1.05rem;
+    }
+
+    .details-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:30px;
+      margin-top:50px;
+    }
+
+    .card{
+      background:white;
+      padding:40px 30px;
+      border-radius:20px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.05);
+      transition:0.3s;
+    }
+
+    .card:hover{
+      transform:translateY(-5px);
+    }
+
+    .card h3{
+      font-family:'Cormorant Garamond', serif;
+      font-size:2rem;
+      margin-bottom:15px;
+    }
+
+    .timeline{
+      max-width:700px;
+      margin:50px auto 0;
+    }
+
+    .timeline-item{
+      background:white;
+      padding:25px;
+      margin-bottom:20px;
+      border-left:4px solid #c5a880;
+      border-radius:10px;
+      box-shadow:0 5px 20px rgba(0,0,0,0.05);
+    }
+
+    .timeline-item span{
+      font-weight:600;
+      color:#8b6f47;
+    }
+
+    .faq{
+      max-width:900px;
+      margin:auto;
+    }
+
+    .faq-item{
+      background:white;
+      padding:25px;
+      border-radius:15px;
+      margin-bottom:20px;
+      box-shadow:0 5px 20px rgba(0,0,0,0.05);
+    }
+
+    .faq-item h4{
+      margin-bottom:10px;
+      color:#8b6f47;
+    }
+
+    .rsvp{
+      background:#1f1f1f;
+      color:white;
+      text-align:center;
+    }
+
+    .rsvp form{
+      max-width:600px;
+      margin:40px auto 0;
+    }
+
+    .form-group{
+      margin-bottom:20px;
+      text-align:left;
+    }
+
+    input,
+    select,
+    textarea{
+      width:100%;
+      padding:15px;
+      border:none;
+      border-radius:10px;
+      font-family:'Montserrat', sans-serif;
+    }
+
+    button{
+      background:#c5a880;
+      color:white;
+      border:none;
+      padding:15px 40px;
+      border-radius:50px;
+      font-size:1rem;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    button:hover{
+      background:#a88b65;
+    }
+
+    footer{
+      text-align:center;
+      padding:30px;
+      background:#111;
+      color:#aaa;
+      font-size:0.9rem;
+    }
+
+    @media(max-width:768px){
+
+      .hero-content h1{
+        font-size:3rem;
+      }
+
+      section{
+        padding:80px 7%;
+      }
+
+      .section-title h2{
+        font-size:2.3rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>ATIF & ISMA</h1>
+      <p>#AtifAndIsmaForever</p>
+      <div class="date">22 MAY 2027</div>
+    </div>
+  </section>
+
+  <!-- LOVE STORY -->
+  <section>
+    <div class="section-title">
+      <p>Our Journey</p>
+      <h2>Love Story</h2>
+    </div>
+
+    <div class="story">
+      <p>
+        Every love story is beautiful, but ours is our favorite.
+        From the moment we met, we knew there was something special between us.
+        Through laughter, adventures, challenges, and countless memories,
+        we’ve built a bond rooted in love, trust, and friendship.
+        We are incredibly grateful to celebrate this next chapter together
+        with the people who mean the most to us.
+      </p>
+    </div>
+  </section>
+
+  <!-- CEREMONY -->
+  <section style="background:#efe7dd;">
+    <div class="section-title">
+      <p>Wedding Details</p>
+      <h2>The Ceremony</h2>
+    </div>
+
+    <div class="details-grid">
+
+      <div class="card">
+        <h3>Venue</h3>
+        <p>
+          Our intimate civil ceremony will be held with our closest family and friends.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Dress Code</h3>
+        <p>
+          Smart Casual attire.<br>
+          Dresses, polos, and elegant neutral tones are encouraged.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Celebration</h3>
+        <p>
+          Join us for a lovely lunch celebration after the ceremony.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SCHEDULE -->
+  <section>
+    <div class="section-title">
+      <p>Wedding Timeline</p>
+      <h2>Schedule of Events</h2>
+    </div>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <span>10:00 AM</span>
+        <p>Arrival & Welcome</p>
+      </div>
+
+      <div class="timeline-item">
+        <span>10:30 AM</span>
+        <p>Civil Ceremony</p>
+      </div>
+
+      <div class="timeline-item">
+        <span>11:30 AM</span>
+        <p>Photo Session</p>
+      </div>
+
+      <div class="timeline-item">
+        <span>12:00 PM</span>
+        <p>Lunch Celebration</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="background:#efe7dd;">
+    <div class="section-title">
+      <p>Helpful Information</p>
+      <h2>Frequently Asked Questions</h2>
+    </div>
+
+    <div class="faq">
+
+      <div class="faq-item">
+        <h4>What time should I arrive?</h4>
+        <p>
+          We recommend arriving by 10:00 AM so you’ll have time to settle in before the ceremony begins.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Can I bring a +1 or children?</h4>
+        <p>
+          As this is an intimate gathering, we kindly request that only invited guests attend.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Where should I park?</h4>
+        <p>
+          Parking details and exact venue location will be shared closer to the date.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section class="rsvp">
+    <div class="section-title">
+      <p>We Hope You Can Make It</p>
+      <h2>RSVP</h2>
+    </div>
+
+    <form id="rsvpForm">
+
+      <div class="form-group">
+        <input type="text" placeholder="Full Name" required>
+      </div>
+
+      <div class="form-group">
+        <input type="email" placeholder="Email Address" required>
+      </div>
+
+      <div class="form-group">
+        <select required>
+          <option value="">Will you attend?</option>
+          <option>Yes, I’ll be there</option>
+          <option>Sorry, I can’t make it</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <textarea rows="5" placeholder="Leave a message for the couple"></textarea>
+      </div>
+
+      <button type="submit">Send RSVP</button>
+
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    Made with love for Atif & Isma • 2027
+  </footer>
+
+  <script>
+    const form = document.getElementById('rsvpForm');
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+
+      alert("Thank you for your RSVP! We can't wait to celebrate with you.");
+
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
