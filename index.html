@@ -1,404 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Atif & Isma Wedding RSVP</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Wedding - May 22, 2027</title>
+    <style>
+        :root {
+            --bg-beige: #f5f5f0;
+            --text-black: #1a1a1a;
+            --accent-gray: #e0e0e0;
+        }
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: var(--bg-beige);
+            color: var(--text-black);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
 
-    body{
-      font-family:'Montserrat', sans-serif;
-      background:#f7f3ee;
-      color:#2b2b2b;
-      line-height:1.7;
-    }
+        header {
+            text-align: center;
+            padding: 60px 0;
+            border-bottom: 1px solid var(--text-black);
+        }
 
-    html{
-      scroll-behavior:smooth;
-    }
+        h1 {
+            font-size: 3rem;
+            letter-spacing: 4px;
+            margin: 10px 0;
+            text-transform: uppercase;
+        }
 
-    section{
-      padding:100px 10%;
-    }
+        .date {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
 
-    .hero{
-      height:100vh;
-      background:
-        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
-        url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1600&auto=format&fit=crop');
-      background-size:cover;
-      background-position:center;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      color:white;
-    }
+        .hero-img {
+            width: 100%;
+            height: 400px;
+            background-color: #333; /* Placeholder for black/white photo */
+            margin: 40px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-style: italic;
+        }
 
-    .hero-content h1{
-      font-family:'Cormorant Garamond', serif;
-      font-size:5rem;
-      font-weight:500;
-      letter-spacing:4px;
-    }
+        section {
+            margin: 60px 0;
+        }
 
-    .hero-content p{
-      margin-top:15px;
-      font-size:1.1rem;
-      letter-spacing:3px;
-    }
+        h2 {
+            font-size: 2rem;
+            border-bottom: 1px solid var(--text-black);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
 
-    .hero-content .date{
-      margin-top:25px;
-      font-size:1rem;
-      border:1px solid rgba(255,255,255,0.5);
-      display:inline-block;
-      padding:10px 25px;
-    }
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
 
-    .section-title{
-      text-align:center;
-      margin-bottom:50px;
-    }
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
 
-    .section-title h2{
-      font-family:'Cormorant Garamond', serif;
-      font-size:3rem;
-      font-weight:500;
-      margin-bottom:10px;
-    }
+        .schedule-table td {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--accent-gray);
+        }
 
-    .section-title p{
-      color:#777;
-      letter-spacing:2px;
-      text-transform:uppercase;
-      font-size:0.8rem;
-    }
+        .time {
+            font-weight: bold;
+            width: 30%;
+        }
 
-    .story{
-      max-width:900px;
-      margin:auto;
-      text-align:center;
-      font-size:1.05rem;
-    }
+        .faq-item {
+            margin-bottom: 30px;
+        }
 
-    .details-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:30px;
-      margin-top:50px;
-    }
+        .faq-num {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
 
-    .card{
-      background:white;
-      padding:40px 30px;
-      border-radius:20px;
-      box-shadow:0 10px 30px rgba(0,0,0,0.05);
-      transition:0.3s;
-    }
+        .contact-box {
+            background-color: white;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid var(--text-black);
+        }
 
-    .card:hover{
-      transform:translateY(-5px);
-    }
+        .rsvp-btn {
+            display: inline-block;
+            background-color: var(--text-black);
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            margin-top: 20px;
+            letter-spacing: 2px;
+        }
 
-    .card h3{
-      font-family:'Cormorant Garamond', serif;
-      font-size:2rem;
-      margin-bottom:15px;
-    }
-
-    .timeline{
-      max-width:700px;
-      margin:50px auto 0;
-    }
-
-    .timeline-item{
-      background:white;
-      padding:25px;
-      margin-bottom:20px;
-      border-left:4px solid #c5a880;
-      border-radius:10px;
-      box-shadow:0 5px 20px rgba(0,0,0,0.05);
-    }
-
-    .timeline-item span{
-      font-weight:600;
-      color:#8b6f47;
-    }
-
-    .faq{
-      max-width:900px;
-      margin:auto;
-    }
-
-    .faq-item{
-      background:white;
-      padding:25px;
-      border-radius:15px;
-      margin-bottom:20px;
-      box-shadow:0 5px 20px rgba(0,0,0,0.05);
-    }
-
-    .faq-item h4{
-      margin-bottom:10px;
-      color:#8b6f47;
-    }
-
-    .rsvp{
-      background:#1f1f1f;
-      color:white;
-      text-align:center;
-    }
-
-    .rsvp form{
-      max-width:600px;
-      margin:40px auto 0;
-    }
-
-    .form-group{
-      margin-bottom:20px;
-      text-align:left;
-    }
-
-    input,
-    select,
-    textarea{
-      width:100%;
-      padding:15px;
-      border:none;
-      border-radius:10px;
-      font-family:'Montserrat', sans-serif;
-    }
-
-    button{
-      background:#c5a880;
-      color:white;
-      border:none;
-      padding:15px 40px;
-      border-radius:50px;
-      font-size:1rem;
-      cursor:pointer;
-      transition:0.3s;
-    }
-
-    button:hover{
-      background:#a88b65;
-    }
-
-    footer{
-      text-align:center;
-      padding:30px;
-      background:#111;
-      color:#aaa;
-      font-size:0.9rem;
-    }
-
-    @media(max-width:768px){
-
-      .hero-content h1{
-        font-size:3rem;
-      }
-
-      section{
-        padding:80px 7%;
-      }
-
-      .section-title h2{
-        font-size:2.3rem;
-      }
-    }
-  </style>
+        @media (max-width: 600px) {
+            .details-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
 </head>
-
 <body>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>ATIF & ISMA</h1>
-      <p>#AtifAndIsmaForever</p>
-      <div class="date">22 MAY 2027</div>
-    </div>
-  </section>
+<div class="container">
+    <header>
+        <div class="date">MAY 22, 2027 [cite: 1]</div>
+        <h1>ATIF & EISMA [cite: 2]</h1>
+        <p>OUR LOVE STORY [cite: 3, 4]</p>
+    </header>
 
-  <!-- LOVE STORY -->
-  <section>
-    <div class="section-title">
-      <p>Our Journey</p>
-      <h2>Love Story</h2>
+    <div class="hero-img">
+        [Black & White Couple Portrait]
     </div>
 
-    <div class="story">
-      <p>
-        Every love story is beautiful, but ours is our favorite.
-        From the moment we met, we knew there was something special between us.
-        Through laughter, adventures, challenges, and countless memories,
-        we’ve built a bond rooted in love, trust, and friendship.
-        We are incredibly grateful to celebrate this next chapter together
-        with the people who mean the most to us.
-      </p>
-    </div>
-  </section>
+    <section id="story">
+        <h2>The Story</h2>
+        <p>Write a paragraph that tells your story as a couple. [cite: 5] Include details like how you met, your journey together, and what makes your relationship unique. [cite: 6] This is your chance to share your personality and connect with your guests, giving them a glimpse into your love story and what this special day means to you. [cite: 7]</p>
+    </section>
 
-  <!-- CEREMONY -->
-  <section style="background:#efe7dd;">
-    <div class="section-title">
-      <p>Wedding Details</p>
-      <h2>The Ceremony</h2>
-    </div>
+    <section id="ceremony">
+        <h2>The Ceremony [cite: 8]</h2>
+        <div class="details-grid">
+            <div>
+                <h3>Ceremony Venue [cite: 9]</h3>
+                <p>We've chosen to have a simple civil wedding with our closest family and friends at the Mandaluyong City Hall. [cite: 10]</p>
+                
+                <h3>Post-Ceremony [cite: 13]</h3>
+                <p>We're having our post-ceremony celebrations lunch at our favorite restaurant: Chewsina. [cite: 14]</p>
+            </div>
+            <div>
+                <h3>Dress Code [cite: 11]</h3>
+                <p>No need to get fancy! Come in Smart Casual, preferably dresses or polos and pants. [cite: 12]</p>
+            </div>
+        </div>
+    </section>
 
-    <div class="details-grid">
+    <section id="schedule">
+        <h2>Schedule of Events [cite: 15]</h2>
+        <table class="schedule-table">
+            <tr>
+                <td class="time">10:00 AM</td>
+                <td>Arrival & Welcome [cite: 16]</td>
+            </tr>
+            <tr>
+                <td class="time">10:30 AM</td>
+                <td>Civil Ceremony [cite: 16]</td>
+            </tr>
+            <tr>
+                <td class="time">11:30 AM</td>
+                <td>Photo Session [cite: 16]</td>
+            </tr>
+            <tr>
+                <td class="time">12:00 NN</td>
+                <td>Lunch at Chewsina [cite: 16]</td>
+            </tr>
+        </table>
+    </section>
 
-      <div class="card">
-        <h3>Venue</h3>
-        <p>
-          Our intimate civil ceremony will be held with our closest family and friends.
-        </p>
-      </div>
+    <section id="registry">
+        <h2>Gift Registry</h2>
+        <p>Your presence is truly the best gift we could ask for. [cite: 17] But if you feel called to give a little something, we've put together a small registry at Sining Spaces. [cite: 18]</p>
+        <p>Email <strong>hello@reallygreatsite.com</strong> with <strong>Registry No. 123-45</strong> for details. [cite: 19] Alternatively, a contribution to our future would mean so much. [cite: 20]</p>
+    </section>
 
-      <div class="card">
-        <h3>Dress Code</h3>
-        <p>
-          Smart Casual attire.<br>
-          Dresses, polos, and elegant neutral tones are encouraged.
-        </p>
-      </div>
+    <section id="faq">
+        <h2>Frequently Asked Questions [cite: 28]</h2>
+        
+        <div class="faq-item">
+            <span class="faq-num">01 [cite: 22]</span>
+            <strong>What time should I arrive? [cite: 25]</strong>
+            <p>Arrive by 10:00 AM so you have time to settle in before the ceremony starts. [cite: 26, 27]</p>
+        </div>
 
-      <div class="card">
-        <h3>Celebration</h3>
-        <p>
-          Join us for a lovely lunch celebration after the ceremony.
-        </p>
-      </div>
+        <div class="faq-item">
+            <span class="faq-num">02 [cite: 29]</span>
+            <strong>Can I bring my kids or a +1? [cite: 30]</strong>
+            <p>As this is a small and intimate gathering, we kindly ask that only those listed in the invitation attend. [cite: 30] We are keeping the event adults-only. [cite: 31]</p>
+        </div>
 
-    </div>
-  </section>
+        <div class="faq-item">
+            <span class="faq-num">03 [cite: 32]</span>
+            <strong>Where should I park? [cite: 32]</strong>
+            <p>There is paid parking near the venue. We will send the exact location via SMS as the date approaches. PWD-friendly parking is available. [cite: 33]</p>
+        </div>
+    </section>
 
-  <!-- SCHEDULE -->
-  <section>
-    <div class="section-title">
-      <p>Wedding Timeline</p>
-      <h2>Schedule of Events</h2>
-    </div>
-
-    <div class="timeline">
-
-      <div class="timeline-item">
-        <span>10:00 AM</span>
-        <p>Arrival & Welcome</p>
-      </div>
-
-      <div class="timeline-item">
-        <span>10:30 AM</span>
-        <p>Civil Ceremony</p>
-      </div>
-
-      <div class="timeline-item">
-        <span>11:30 AM</span>
-        <p>Photo Session</p>
-      </div>
-
-      <div class="timeline-item">
-        <span>12:00 PM</span>
-        <p>Lunch Celebration</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section style="background:#efe7dd;">
-    <div class="section-title">
-      <p>Helpful Information</p>
-      <h2>Frequently Asked Questions</h2>
-    </div>
-
-    <div class="faq">
-
-      <div class="faq-item">
-        <h4>What time should I arrive?</h4>
-        <p>
-          We recommend arriving by 10:00 AM so you’ll have time to settle in before the ceremony begins.
-        </p>
-      </div>
-
-      <div class="faq-item">
-        <h4>Can I bring a +1 or children?</h4>
-        <p>
-          As this is an intimate gathering, we kindly request that only invited guests attend.
-        </p>
-      </div>
-
-      <div class="faq-item">
-        <h4>Where should I park?</h4>
-        <p>
-          Parking details and exact venue location will be shared closer to the date.
-        </p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- RSVP -->
-  <section class="rsvp">
-    <div class="section-title">
-      <p>We Hope You Can Make It</p>
-      <h2>RSVP</h2>
-    </div>
-
-    <form id="rsvpForm">
-
-      <div class="form-group">
-        <input type="text" placeholder="Full Name" required>
-      </div>
-
-      <div class="form-group">
-        <input type="email" placeholder="Email Address" required>
-      </div>
-
-      <div class="form-group">
-        <select required>
-          <option value="">Will you attend?</option>
-          <option>Yes, I’ll be there</option>
-          <option>Sorry, I can’t make it</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <textarea rows="5" placeholder="Leave a message for the couple"></textarea>
-      </div>
-
-      <button type="submit">Send RSVP</button>
-
-    </form>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    Made with love for Atif & Isma • 2027
-  </footer>
-
-  <script>
-    const form = document.getElementById('rsvpForm');
-
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-
-      alert("Thank you for your RSVP! We can't wait to celebrate with you.");
-
-      form.reset();
-    });
-  </script>
+    <section id="rsvp" class="contact-box">
+        <h2>RSVP [cite: 41]</h2>
+        <p>Please let us know by emailing us at:</p>
+        <p><strong>hello@reallygreatsite.com [cite: 42]</strong></p>
+        
+        <div style="margin-top: 30px;">
+            <p><strong>Get in Touch [cite: 35]</strong></p>
+            <p>Miguel Ramon: 123-456-7890 [cite: 36, 37]</p>
+            <p>Andrea de Guzman: 123-456-7890 [cite: 39, 40]</p>
+        </div>
+        
+        <p><em>Thank you for being part of this milestone with us! [cite: 21]</em></p>
+    </section>
+</div>
 
 </body>
 </html>
