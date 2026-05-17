@@ -1,227 +1,1265 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Wedding - May 22, 2027</title>
-    <style>
-        :root {
-            --bg-beige: #f5f5f0;
-            --text-black: #1a1a1a;
-            --accent-gray: #e0e0e0;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ismasari & Atif — Walimatul Urus 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        body {
-            font-family: 'Times New Roman', serif;
-            background-color: var(--bg-beige);
-            color: var(--text-black);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
+  :root {
+    --cream: #f7f4ee;
+    --cream-dark: #ede9df;
+    --olive: #6b7040;
+    --olive-dark: #4a4e2a;
+    --olive-light: #9a9f60;
+    --wine: #7a2030;
+    --wine-light: #a03045;
+    --text-dark: #2a2318;
+    --text-mid: #5a5040;
+    --gold: #b8972a;
+    --gold-light: #d4b84a;
+    --border: rgba(107,112,64,0.25);
+  }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
+  html { scroll-behavior: smooth; }
 
-        header {
-            text-align: center;
-            padding: 60px 0;
-            border-bottom: 1px solid var(--text-black);
-        }
+  body {
+    background: var(--cream);
+    color: var(--text-dark);
+    font-family: 'EB Garamond', Georgia, serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 
-        h1 {
-            font-size: 3rem;
-            letter-spacing: 4px;
-            margin: 10px 0;
-            text-transform: uppercase;
-        }
+  /* Decorative background pattern */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(107,112,64,0.06) 0%, transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(107,112,64,0.06) 0%, transparent 40%),
+      radial-gradient(circle at 50% 50%, rgba(184,151,42,0.03) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
 
-        .date {
-            font-size: 1.2rem;
-            letter-spacing: 2px;
-        }
+  /* Hero Section */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    overflow: hidden;
+  }
 
-        .hero-img {
-            width: 100%;
-            height: 400px;
-            background-color: #333; /* Placeholder for black/white photo */
-            margin: 40px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-style: italic;
-        }
+  .hero::before, .hero::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 1px solid rgba(107,112,64,0.12);
+    pointer-events: none;
+  }
+  .hero::before { top: -80px; left: -80px; width: 400px; height: 400px; }
+  .hero::after  { bottom: -80px; right: -80px; width: 350px; height: 350px; }
 
-        section {
-            margin: 60px 0;
-        }
+  .bismillah {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+    color: var(--olive);
+    letter-spacing: 0.04em;
+    margin-bottom: 2rem;
+    opacity: 0.85;
+  }
 
-        h2 {
-            font-size: 2rem;
-            border-bottom: 1px solid var(--text-black);
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-        }
+  .hero-label {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(0.65rem, 1.5vw, 0.78rem);
+    letter-spacing: 0.35em;
+    color: var(--olive-light);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+  }
 
-        .details-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
+  .names-wrapper {
+    position: relative;
+    margin: 0.5rem 0 2rem;
+  }
 
-        .schedule-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
+  .name-bride {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    color: var(--text-dark);
+    line-height: 1;
+    display: block;
+    letter-spacing: -0.01em;
+  }
 
-        .schedule-table td {
-            padding: 15px 0;
-            border-bottom: 1px solid var(--accent-gray);
-        }
+  .name-and {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    color: var(--olive);
+    display: block;
+    margin: 0.3rem 0;
+    letter-spacing: 0.1em;
+  }
 
-        .time {
-            font-weight: bold;
-            width: 30%;
-        }
+  .name-groom {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    color: var(--text-dark);
+    line-height: 1;
+    display: block;
+  }
 
-        .faq-item {
-            margin-bottom: 30px;
-        }
+  .hero-divider {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--olive), transparent);
+    margin: 1.5rem auto;
+  }
 
-        .faq-num {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
-        }
+  .hero-date {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(0.7rem, 1.8vw, 0.9rem);
+    letter-spacing: 0.3em;
+    color: var(--olive-dark);
+    margin-bottom: 0.5rem;
+  }
 
-        .contact-box {
-            background-color: white;
-            padding: 30px;
-            text-align: center;
-            border: 1px solid var(--text-black);
-        }
+  .hero-venue {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(0.6rem, 1.5vw, 0.78rem);
+    letter-spacing: 0.2em;
+    color: var(--text-mid);
+    line-height: 1.9;
+  }
 
-        .rsvp-btn {
-            display: inline-block;
-            background-color: var(--text-black);
-            color: white;
-            padding: 15px 40px;
-            text-decoration: none;
-            margin-top: 20px;
-            letter-spacing: 2px;
-        }
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: var(--olive-light);
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    animation: bob 2s ease-in-out infinite;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .scroll-hint::after {
+    content: '';
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--olive-light), transparent);
+  }
+  @keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
 
-        @media (max-width: 600px) {
-            .details-grid { grid-template-columns: 1fr; }
-            h1 { font-size: 2rem; }
-        }
-    </style>
+  /* Decorative corner ornaments */
+  .ornament {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    opacity: 0.2;
+  }
+  .ornament-tl { top: 2rem; left: 2rem; }
+  .ornament-tr { top: 2rem; right: 2rem; transform: scaleX(-1); }
+  .ornament-bl { bottom: 4rem; left: 2rem; transform: scaleY(-1); }
+  .ornament-br { bottom: 4rem; right: 2rem; transform: scale(-1); }
+
+  /* Botanical SVG leaves */
+  .botanical {
+    position: absolute;
+    opacity: 0.12;
+    pointer-events: none;
+  }
+  .botanical-left { left: -20px; top: 30%; width: 200px; }
+  .botanical-right { right: -20px; bottom: 25%; width: 180px; transform: scaleX(-1); }
+
+  /* Section styles */
+  section {
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-inner {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--olive-light);
+    text-align: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 400;
+    text-align: center;
+    color: var(--text-dark);
+    margin-bottom: 2.5rem;
+  }
+
+  /* Couple card */
+  .couple-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 2rem;
+    align-items: center;
+    margin: 3rem 0;
+  }
+
+  .person-card {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.5);
+    position: relative;
+  }
+  .person-card::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: -1px; right: -1px; bottom: -1px;
+    border: 1px solid var(--border);
+    transform: translate(5px, 5px);
+    z-index: -1;
+  }
+
+  .person-role {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: var(--olive-light);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .person-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.3rem, 3vw, 1.7rem);
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+
+  .person-parents {
+    font-family: 'EB Garamond', serif;
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  .couple-heart {
+    font-size: 1.5rem;
+    color: var(--wine);
+    opacity: 0.7;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 2rem;
+  }
+
+  /* Details section */
+  .details-section {
+    background: rgba(107,112,64,0.05);
+  }
+
+  .details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .detail-item {
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+
+  .detail-icon {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 1rem;
+    color: var(--olive);
+    opacity: 0.7;
+  }
+
+  .detail-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--olive-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .detail-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    color: var(--text-dark);
+    line-height: 1.6;
+  }
+
+  /* Dress code */
+  .dress-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+
+  .dress-tag {
+    padding: 0.5rem 1.25rem;
+    border: 1px solid var(--olive-light);
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--olive-dark);
+    background: rgba(107,112,64,0.05);
+  }
+
+  /* RSVP Form */
+  .rsvp-section {
+    background: var(--cream-dark);
+  }
+
+  .rsvp-form {
+    max-width: 560px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--olive-dark);
+  }
+
+  input[type="text"], input[type="tel"], input[type="number"], textarea, select {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    background: rgba(255,255,255,0.8);
+    border: 1px solid var(--border);
+    border-bottom: 2px solid var(--olive-light);
+    font-family: 'EB Garamond', serif;
+    font-size: 1rem;
+    color: var(--text-dark);
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  input:focus, textarea:focus, select:focus {
+    border-bottom-color: var(--olive-dark);
+    background: rgba(255,255,255,0.95);
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+    line-height: 1.6;
+  }
+
+  .attendance-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .attendance-option {
+    position: relative;
+  }
+
+  .attendance-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0; height: 0;
+  }
+
+  .attendance-option label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.6);
+    cursor: pointer;
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    transition: all 0.2s;
+    gap: 0.5rem;
+  }
+
+  .attendance-option input[type="radio"]:checked + label {
+    background: var(--olive);
+    color: var(--cream);
+    border-color: var(--olive);
+  }
+
+  .submit-btn {
+    padding: 1.1rem 3rem;
+    background: var(--olive-dark);
+    color: var(--cream);
+    border: none;
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.25s, transform 0.15s;
+    align-self: center;
+    margin-top: 1rem;
+  }
+
+  .submit-btn:hover { background: var(--olive); transform: translateY(-1px); }
+  .submit-btn:active { transform: translateY(0); }
+
+  /* Success message */
+  .success-msg {
+    display: none;
+    text-align: center;
+    padding: 3rem 2rem;
+  }
+
+  .success-msg.show { display: block; }
+
+  .success-icon {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 3rem;
+    color: var(--olive);
+    margin-bottom: 1rem;
+  }
+
+  .success-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+  }
+
+  .success-text {
+    font-family: 'EB Garamond', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  /* Contact section */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .contact-card {
+    text-align: center;
+    padding: 1.75rem 1rem;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.4);
+  }
+
+  .contact-role {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--olive-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin-bottom: 0.4rem;
+  }
+
+  .contact-phone {
+    font-family: 'EB Garamond', serif;
+    font-size: 0.9rem;
+    color: var(--wine);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+  }
+
+  .contact-phone:hover { color: var(--wine-light); }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 4rem 2rem;
+  }
+
+  .footer-names {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-date {
+    font-family: 'Cinzel', serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    color: var(--olive-light);
+    text-transform: uppercase;
+  }
+
+  .section-rule {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 auto 3rem;
+    max-width: 300px;
+  }
+  .section-rule::before, .section-rule::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--olive-light));
+  }
+  .section-rule::after { background: linear-gradient(90deg, var(--olive-light), transparent); }
+  .section-rule span {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--olive-light);
+  }
+
+  /* Map link */
+  .map-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--wine);
+    text-decoration: none;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(122,32,48,0.3);
+    transition: all 0.2s;
+  }
+  .map-link:hover { background: var(--wine); color: var(--cream); }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .couple-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .couple-heart { display: none; }
+    .details-grid { grid-template-columns: 1fr; }
+
+    .contact-grid { grid-template-columns: 1fr; }
+    .attendance-group { grid-template-columns: 1fr; }
+    .botanical { display: none; }
+  }
+
+  /* Entrance animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero > * { animation: fadeUp 0.9s ease both; }
+  .hero .bismillah { animation-delay: 0.1s; }
+  .hero .hero-label { animation-delay: 0.2s; }
+  .hero .names-wrapper { animation-delay: 0.3s; }
+  .hero .hero-divider { animation-delay: 0.5s; }
+  .hero .hero-date { animation-delay: 0.6s; }
+  .hero .hero-venue { animation-delay: 0.7s; }
+  .hero .scroll-hint { animation-delay: 1s; }
+
+  /* Guest count display */
+  .guests-display {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    color: var(--olive-dark);
+    text-align: center;
+    padding: 0.5rem;
+    font-style: italic;
+  }
+
+  .guests-controls {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: rgba(255,255,255,0.8);
+    border: 1px solid var(--border);
+    border-bottom: 2px solid var(--olive-light);
+    overflow: hidden;
+  }
+
+  .guests-btn {
+    width: 44px;
+    height: 44px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 1.3rem;
+    color: var(--olive-dark);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.15s;
+  }
+  .guests-btn:hover { background: rgba(107,112,64,0.1); }
+
+  .guests-count {
+    flex: 1;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--text-dark);
+    font-style: italic;
+    border: none;
+    background: transparent;
+    outline: none;
+  }
+
+  .rsvp-stat { text-align:center; }
+  .rsvp-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--olive-dark);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .rsvp-stat-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+  }
+  .rsvp-stat-divider {
+    width: 1px;
+    background: var(--border);
+    align-self: stretch;
+    min-height: 50px;
+  }
+  .rsvp-entry {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.25rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(107,112,64,0.1);
+    margin-bottom: 0;
+  }
+  .rsvp-entry-num { display: none; }
+  .rsvp-entry-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    color: var(--text-dark);
+    font-weight: 500;
+  }
+  .rsvp-entry-phone {
+    font-family: 'EB Garamond', serif;
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    font-style: italic;
+    margin-top: 0.2rem;
+  }
+  .rsvp-entry-wishes {
+    font-family: 'EB Garamond', serif;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--text-mid);
+    margin-top: 0.35rem;
+    line-height: 1.5;
+  }
+  .rsvp-entry-guests {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--olive-dark);
+    text-align: center;
+    white-space: nowrap;
+  }
+  .rsvp-badge {
+    display: inline-block;
+    padding: 0.25rem 0.7rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border: 1px solid;
+    margin-top: 0.3rem;
+  }
+  .rsvp-badge.yes { color: var(--olive-dark); border-color: var(--olive-light); background: rgba(107,112,64,0.06); }
+  .rsvp-badge.no  { color: var(--wine); border-color: rgba(122,32,48,0.3); background: rgba(122,32,48,0.04); }
+  #rsvp-list { background: var(--cream); }
+
+  /* Wishes ticker — 3 visible, vertical auto-scroll */
+  .wishes-ticker-wrap {
+    overflow: hidden;
+    position: relative;
+    max-height: calc(3 * 110px);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+  }
+  .wishes-ticker {
+    display: flex;
+    flex-direction: column;
+    animation: ticker-scroll 18s linear infinite;
+  }
+  .wishes-ticker:hover { animation-play-state: paused; }
+  @keyframes ticker-scroll {
+    from { transform: translateY(0); }
+    to   { transform: translateY(-50%); }
+  }
+  .wish-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.25rem 2rem;
+    min-height: 110px;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .wish-item-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--text-dark);
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+    max-width: 520px;
+  }
+  .wish-item-author {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--olive-light);
+  }
+  .wish-item-dot {
+    display: inline-block;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    margin-right: 5px;
+    vertical-align: middle;
+    position: relative; top: -1px;
+  }
+  .wish-item-dot.yes { background: var(--olive); }
+  .wish-item-dot.no  { background: var(--wine); }
+  .wishes-ticker-empty {
+    text-align: center;
+    font-style: italic;
+    color: var(--text-mid);
+    padding: 2rem 0;
+    font-family: 'EB Garamond', serif;
+  }
+</style>
 </head>
 <body>
 
-<div class="container">
-    <header>
-        <div class="date">MAY 22, 2027 [cite: 1]</div>
-        <h1>ATIF & EISMA [cite: 2]</h1>
-        <p>OUR LOVE STORY [cite: 3, 4]</p>
-    </header>
+<!-- HERO -->
+<section class="hero" id="top">
+  <!-- Botanical SVG decorations -->
+  <svg class="botanical botanical-left" viewBox="0 0 200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 400 C100 300 40 250 20 150 C0 50 60 0 100 0" stroke="#6b7040" stroke-width="1.5" fill="none"/>
+    <ellipse cx="55" cy="180" rx="45" ry="25" fill="#6b7040" transform="rotate(-30 55 180)"/>
+    <ellipse cx="75" cy="100" rx="40" ry="22" fill="#6b7040" transform="rotate(-15 75 100)"/>
+    <ellipse cx="40" cy="260" rx="38" ry="20" fill="#6b7040" transform="rotate(-40 40 260)"/>
+    <ellipse cx="90" cy="50" rx="30" ry="16" fill="#6b7040" transform="rotate(-10 90 50)"/>
+  </svg>
+  <svg class="botanical botanical-right" viewBox="0 0 200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 400 C100 300 40 250 20 150 C0 50 60 0 100 0" stroke="#6b7040" stroke-width="1.5" fill="none"/>
+    <ellipse cx="55" cy="180" rx="45" ry="25" fill="#6b7040" transform="rotate(-30 55 180)"/>
+    <ellipse cx="75" cy="100" rx="40" ry="22" fill="#6b7040" transform="rotate(-15 75 100)"/>
+    <ellipse cx="40" cy="260" rx="38" ry="20" fill="#6b7040" transform="rotate(-40 40 260)"/>
+    <ellipse cx="90" cy="50" rx="30" ry="16" fill="#6b7040" transform="rotate(-10 90 50)"/>
+  </svg>
 
-    <div class="hero-img">
-        [Black & White Couple Portrait]
+  <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+  <div class="hero-label">Walimatul Urus</div>
+  <div class="names-wrapper">
+    <span class="name-bride">Ismasari</span>
+    <span class="name-and">& </span>
+    <span class="name-groom">Atif</span>
+  </div>
+  <div class="hero-divider"></div>
+  <div class="hero-date">22 May 2027</div>
+  <div class="hero-venue">
+    Kingsman Hall Kamalinda<br>
+    Glenmarie, Shah Alam
+  </div>
+  <a class="scroll-hint" href="#about">RSVP</a>
+</section>
+
+<!-- RSVP LIST -->
+<section id="rsvp-list">
+  <div class="section-inner">
+    <div class="section-label">Guest List</div>
+    <div class="section-rule"><span>&#10022;</span></div>
+    <h2 class="section-title" style="font-size:1.8rem; margin-bottom:0.5rem;">Confirmed RSVPs</h2>
+    <p style="text-align:center; font-style:italic; color:var(--text-mid); margin-bottom:2.5rem; font-size:0.95rem;">
+      Those who have graciously responded to our invitation.
+    </p>
+
+    <div id="rsvp-summary" style="display:flex; justify-content:center; gap:2rem; margin-bottom:2.5rem; flex-wrap:wrap; align-items:center;">
+      <div class="rsvp-stat">
+        <div class="rsvp-stat-num" id="stat-attending">0</div>
+        <div class="rsvp-stat-label">Attending</div>
+      </div>
+      <div class="rsvp-stat-divider"></div>
+      <div class="rsvp-stat">
+        <div class="rsvp-stat-num" id="stat-guests">0</div>
+        <div class="rsvp-stat-label">Total Guests</div>
+      </div>
+      <div class="rsvp-stat-divider"></div>
+      <div class="rsvp-stat">
+        <div class="rsvp-stat-num" id="stat-unable">0</div>
+        <div class="rsvp-stat-label">Unable to Attend</div>
+      </div>
     </div>
 
-    <section id="story">
-        <h2>The Story</h2>
-        <p>Write a paragraph that tells your story as a couple. [cite: 5] Include details like how you met, your journey together, and what makes your relationship unique. [cite: 6] This is your chance to share your personality and connect with your guests, giving them a glimpse into your love story and what this special day means to you. [cite: 7]</p>
-    </section>
+    <div id="rsvp-entries">
+      <div id="rsvp-empty" style="text-align:center; font-style:italic; color:var(--text-mid); padding:3rem 0; border:1px dashed var(--border);">
+        No RSVPs yet &mdash; be the first to confirm your attendance.
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section id="ceremony">
-        <h2>The Ceremony [cite: 8]</h2>
-        <div class="details-grid">
-            <div>
-                <h3>Ceremony Venue [cite: 9]</h3>
-                <p>We've chosen to have a simple civil wedding with our closest family and friends at the Mandaluyong City Hall. [cite: 10]</p>
-                
-                <h3>Post-Ceremony [cite: 13]</h3>
-                <p>We're having our post-ceremony celebrations lunch at our favorite restaurant: Chewsina. [cite: 14]</p>
+<!-- ABOUT COUPLE -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-label">The Couple</div>
+    <div class="section-rule"><span>✦</span></div>
+    <p style="text-align:center; font-style:italic; color: var(--text-mid); line-height:1.9; font-size:1.05rem; max-width:500px; margin: 0 auto 3rem;">
+      By the Grace of Allah SWT, as our beloved daughter begins a beautiful new chapter in life, we warmly invite you to celebrate this joyous union with us.
+    </p>
+
+    <div class="couple-grid">
+      <div class="person-card">
+        <div class="person-role">The Bride</div>
+        <div class="person-name">Ismasari Ismail</div>
+        <div class="person-parents">
+          Daughter of<br>
+          Mr. Ismail Saidin<br>
+          &amp; Mrs. Istijayanti Murais
+        </div>
+      </div>
+      <div class="couple-heart">+</div>
+      <div class="person-card">
+        <div class="person-role">The Groom</div>
+        <div class="person-name">Atif Mat Zuki</div>
+        <div class="person-parents">
+          Son of<br>
+          Mr. Mat Zuki<br>
+          &amp; Mrs. Noraini Mahmud
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- WISHES -->
+<section id="wishes-display">
+  <div class="section-inner" style="padding: 4rem 2rem 2rem;">
+    <div class="section-label">Wishes &amp; Dua</div>
+    <div class="section-rule"><span>&#10022;</span></div>
+  </div>
+  <div class="wishes-ticker-wrap" id="wishes-ticker-wrap">
+    <div id="wishes-empty-ticker" class="wishes-ticker-empty">
+      Wishes from loved ones will appear here.
+    </div>
+    <div class="wishes-ticker" id="wishes-ticker" style="display:none;"></div>
+  </div>
+  <div style="height:3rem;"></div>
+</section>
+
+<!-- EVENT DETAILS -->
+<section class="details-section">
+  <div class="section-inner">
+    <div class="section-label">Event Details</div>
+    <div class="section-rule"><span>✦</span></div>
+
+    <div class="details-grid">
+      <div class="detail-item">
+        <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+          <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        <div class="detail-label">Date</div>
+        <div class="detail-value">Friday<br>22 May 2027</div>
+      </div>
+      <div class="detail-item">
+        <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+          <circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 15.5 15.5"/>
+        </svg>
+        <div class="detail-label">Time</div>
+        <div class="detail-value">Lunch Reception<br>11:00 AM — 3:00 PM</div>
+      </div>
+      <div class="detail-item">
+        <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+        </svg>
+        <div class="detail-label">Venue</div>
+        <div class="detail-value">Kingsman Hall Kamalinda<br>Glenmarie, Shah Alam</div>
+      </div>
+      <div class="detail-item">
+        <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+          <path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.57a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.57a2 2 0 00-1.34-2.23z"/>
+        </svg>
+        <div class="detail-label">Dress Code</div>
+        <div class="detail-value">Traditional Wear<br>Baju Kebaya · Baju Batik</div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:2rem;">
+      <a class="map-link" href="https://maps.google.com/?q=Kingsman+Hall+Kamalinda+Glenmarie+Shah+Alam" target="_blank">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        View on Map
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- RSVP -->
+<section class="rsvp-section" id="rsvp">
+  <div class="section-inner">
+    <div class="section-label">Your Presence</div>
+    <div class="section-rule"><span>✦</span></div>
+    <h2 class="section-title" style="margin-bottom:0.5rem;">Reserve Your Seat</h2>
+    <p style="text-align:center; font-style:italic; color:var(--text-mid); margin-bottom:3rem; font-size:1rem;">
+      We are excited to celebrate with you. Please let us know if you can join us.
+    </p>
+
+    <div id="form-wrapper">
+      <form class="rsvp-form" onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label for="fullname">Full Name</label>
+          <input type="text" id="fullname" placeholder="Your name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" placeholder="+60 1X XXXX XXXX" required>
+        </div>
+
+        <div class="form-group">
+          <label>Attendance</label>
+          <div class="attendance-group">
+            <div class="attendance-option">
+              <input type="radio" id="attend-yes" name="attendance" value="yes" checked>
+              <label for="attend-yes">✓ &nbsp;With Joy, I'll Attend</label>
             </div>
-            <div>
-                <h3>Dress Code [cite: 11]</h3>
-                <p>No need to get fancy! Come in Smart Casual, preferably dresses or polos and pants. [cite: 12]</p>
+            <div class="attendance-option">
+              <input type="radio" id="attend-no" name="attendance" value="no">
+              <label for="attend-no">✗ &nbsp;Regretfully Unable</label>
             </div>
-        </div>
-    </section>
-
-    <section id="schedule">
-        <h2>Schedule of Events [cite: 15]</h2>
-        <table class="schedule-table">
-            <tr>
-                <td class="time">10:00 AM</td>
-                <td>Arrival & Welcome [cite: 16]</td>
-            </tr>
-            <tr>
-                <td class="time">10:30 AM</td>
-                <td>Civil Ceremony [cite: 16]</td>
-            </tr>
-            <tr>
-                <td class="time">11:30 AM</td>
-                <td>Photo Session [cite: 16]</td>
-            </tr>
-            <tr>
-                <td class="time">12:00 NN</td>
-                <td>Lunch at Chewsina [cite: 16]</td>
-            </tr>
-        </table>
-    </section>
-
-    <section id="registry">
-        <h2>Gift Registry</h2>
-        <p>Your presence is truly the best gift we could ask for. [cite: 17] But if you feel called to give a little something, we've put together a small registry at Sining Spaces. [cite: 18]</p>
-        <p>Email <strong>hello@reallygreatsite.com</strong> with <strong>Registry No. 123-45</strong> for details. [cite: 19] Alternatively, a contribution to our future would mean so much. [cite: 20]</p>
-    </section>
-
-    <section id="faq">
-        <h2>Frequently Asked Questions [cite: 28]</h2>
-        
-        <div class="faq-item">
-            <span class="faq-num">01 [cite: 22]</span>
-            <strong>What time should I arrive? [cite: 25]</strong>
-            <p>Arrive by 10:00 AM so you have time to settle in before the ceremony starts. [cite: 26, 27]</p>
+          </div>
         </div>
 
-        <div class="faq-item">
-            <span class="faq-num">02 [cite: 29]</span>
-            <strong>Can I bring my kids or a +1? [cite: 30]</strong>
-            <p>As this is a small and intimate gathering, we kindly ask that only those listed in the invitation attend. [cite: 30] We are keeping the event adults-only. [cite: 31]</p>
+        <div class="form-group" id="guests-field">
+          <label>Number of Guests (including yourself)</label>
+          <div class="guests-controls">
+            <button type="button" class="guests-btn" onclick="adjustGuests(-1)">−</button>
+            <span class="guests-count" id="guests-count">1</span>
+            <button type="button" class="guests-btn" onclick="adjustGuests(1)">+</button>
+          </div>
         </div>
 
-        <div class="faq-item">
-            <span class="faq-num">03 [cite: 32]</span>
-            <strong>Where should I park? [cite: 32]</strong>
-            <p>There is paid parking near the venue. We will send the exact location via SMS as the date approaches. PWD-friendly parking is available. [cite: 33]</p>
+        <div class="form-group">
+          <label for="wishes">Your Wishes &amp; Dua</label>
+          <textarea id="wishes" placeholder="Share your warmest wishes for the couple…"></textarea>
         </div>
-    </section>
 
-    <section id="rsvp" class="contact-box">
-        <h2>RSVP [cite: 41]</h2>
-        <p>Please let us know by emailing us at:</p>
-        <p><strong>hello@reallygreatsite.com [cite: 42]</strong></p>
-        
-        <div style="margin-top: 30px;">
-            <p><strong>Get in Touch [cite: 35]</strong></p>
-            <p>Miguel Ramon: 123-456-7890 [cite: 36, 37]</p>
-            <p>Andrea de Guzman: 123-456-7890 [cite: 39, 40]</p>
+        <button type="submit" class="submit-btn">Confirm RSVP</button>
+      </form>
+    </div>
+
+    <div class="success-msg" id="success-msg">
+      <div class="success-icon">✦</div>
+      <div class="success-title">Terima Kasih!</div>
+      <p class="success-text" id="success-text">
+        We've received your RSVP and can't wait to celebrate with you.<br>
+        May Allah SWT bless this gathering.
+      </p>
+      <div class="hero-divider" style="margin-top:1.5rem;"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-label">Enquiries</div>
+    <div class="section-rule"><span>✦</span></div>
+    <div class="section-title" style="font-size:1.8rem; margin-bottom:0.5rem;">Contact Us</div>
+    <p style="text-align:center; font-style:italic; color:var(--text-mid); font-size:0.95rem;">For any questions, please reach out to the family.</p>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-role">Bride's Father</div>
+        <div class="contact-name">Ismail Saidin</div>
+        <a class="contact-phone" href="tel:+60163945710">+6016 3945 710</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-role">Bride's Brother</div>
+        <div class="contact-name">Adzhar</div>
+        <a class="contact-phone" href="tel:+601111238405">+6011 1123 8405</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-role">Bride's Brother</div>
+        <div class="contact-name">Nizam</div>
+        <a class="contact-phone" href="tel:+601165624260">+6011 6562 4260</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="hero-divider" style="margin-bottom:2rem;"></div>
+  <div class="footer-names">Ismasari &amp; Atif</div>
+  <div class="footer-date">22 May 2027 · Kingsman Hall Kamalinda · Glenmarie Shah Alam</div>
+  <div style="margin-top:2rem; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1rem; color:var(--text-mid); opacity:0.6;">
+    بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
+  </div>
+</footer>
+
+<script>
+  let guestCount = 1;
+  let rsvps = JSON.parse(localStorage.getItem('wedding_rsvps') || '[]');
+
+  function saveRsvps() {
+    try { localStorage.setItem('wedding_rsvps', JSON.stringify(rsvps)); } catch(e) {}
+  }
+
+  function adjustGuests(delta) {
+    guestCount = Math.max(1, Math.min(3, guestCount + delta));
+    document.getElementById('guests-count').textContent = guestCount;
+  }
+
+  document.querySelectorAll('input[name="attendance"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      const show = radio.value === 'yes';
+      document.getElementById('guests-field').style.display = show ? 'flex' : 'none';
+    });
+  });
+
+  function renderWishes() {
+    const ticker = document.getElementById('wishes-ticker');
+    const emptyEl = document.getElementById('wishes-empty-ticker');
+    if (!ticker) return;
+
+    const withWishes = rsvps.filter(r => r.wishes && r.wishes.trim() !== '');
+
+    if (withWishes.length === 0) {
+      if (emptyEl) emptyEl.style.display = 'block';
+      ticker.style.display = 'none';
+      return;
+    }
+
+    if (emptyEl) emptyEl.style.display = 'none';
+    ticker.style.display = 'flex';
+    ticker.innerHTML = '';
+
+    // Show max 3 visible; duplicate for seamless loop
+    const items = withWishes.length < 3
+      ? [...withWishes, ...withWishes, ...withWishes].slice(0, Math.max(withWishes.length * 2, 6))
+      : [...withWishes, ...withWishes];
+
+    items.forEach(r => {
+      const el = document.createElement('div');
+      el.className = 'wish-item';
+      el.innerHTML = `
+        <div class="wish-item-text">"${r.wishes}"</div>
+        <div class="wish-item-author">
+          <span class="wish-item-dot ${r.attendance}"></span>${r.name}
         </div>
-        
-        <p><em>Thank you for being part of this milestone with us! [cite: 21]</em></p>
-    </section>
-</div>
+      `;
+      ticker.appendChild(el);
+    });
 
+    // Speed: ~6s per item, min 12s
+    const duration = Math.max(12, withWishes.length * 6);
+    ticker.style.animationDuration = duration + 's';
+  }
+
+  function renderRsvps() {
+    const container = document.getElementById('rsvp-entries');
+    const empty = document.getElementById('rsvp-empty');
+    const attending = rsvps.filter(r => r.attendance === 'yes');
+    const unable = rsvps.filter(r => r.attendance === 'no');
+    const totalGuests = attending.reduce((s, r) => s + (r.guests || 1), 0);
+
+    document.getElementById('stat-attending').textContent = attending.length;
+    document.getElementById('stat-guests').textContent = totalGuests;
+    document.getElementById('stat-unable').textContent = unable.length;
+
+    if (rsvps.length === 0) {
+      if (empty) empty.style.display = 'block';
+      const existing = container.querySelectorAll('.rsvp-entry');
+      existing.forEach(el => el.remove());
+      return;
+    }
+    if (empty) empty.style.display = 'none';
+
+    const existing = container.querySelectorAll('.rsvp-entry');
+    existing.forEach(el => el.remove());
+
+    rsvps.forEach((r, i) => {
+      const el = document.createElement('div');
+      el.className = 'rsvp-entry';
+      const wishesHtml = r.wishes ? `<div class="rsvp-entry-wishes">"${r.wishes}"</div>` : '';
+      const guestsHtml = r.attendance === 'yes' ? `<div class="rsvp-entry-guests">${r.guests} pax</div>` : '<div></div>';
+      el.innerHTML = `
+        <div class="rsvp-entry-num">${String(i+1).padStart(2,'0')}</div>
+        <div>
+          <div class="rsvp-entry-name">${r.name}</div>
+          <div class="rsvp-entry-phone">${r.phone}</div>
+          ${wishesHtml}
+          <span class="rsvp-badge ${r.attendance}">${r.attendance === 'yes' ? 'Attending' : 'Unable to Attend'}</span>
+        </div>
+        ${guestsHtml}
+      `;
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(10px)';
+      container.appendChild(el);
+      requestAnimationFrame(() => {
+        el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      });
+    });
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const name = document.getElementById('fullname').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const attendance = document.querySelector('input[name="attendance"]:checked').value;
+    const wishes = document.getElementById('wishes').value.trim();
+
+    const entry = { name, phone, attendance, guests: guestCount, wishes, time: Date.now() };
+    rsvps.push(entry);
+    saveRsvps();
+
+    // Send to Google Sheets via hidden form (bypasses CORS)
+    const iframe = document.createElement('iframe');
+    iframe.name = 'hidden_iframe';
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = 'https://script.google.com/macros/s/AKfycbzldg0JJgGd6dCyGGWxRQEUbADgdRG240TLUhDmSvXj8ZbRT2frhlm6jIvdQerxoObM/exec';
+    form.target = 'hidden_iframe';
+    form.style.display = 'none';
+
+    const fields = { name, phone, attendance, guests: guestCount, wishes };
+    Object.entries(fields).forEach(([k, v]) => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = k;
+      input.value = v;
+      form.appendChild(input);
+    });
+
+    document.body.appendChild(form);
+    form.submit();
+
+    setTimeout(() => {
+      document.body.removeChild(form);
+      document.body.removeChild(iframe);
+    }, 3000);
+
+    const formWrapper = document.getElementById('form-wrapper');
+    const successMsg = document.getElementById('success-msg');
+    const successText = document.getElementById('success-text');
+
+    formWrapper.style.display = 'none';
+    successMsg.classList.add('show');
+
+    if (attendance === 'yes') {
+      successText.innerHTML = `We've received your RSVP, <em>${name}</em>! We can't wait to celebrate this joyous union with you.<br><br>May Allah SWT bless this gathering and grant the couple a lifetime of happiness.`;
+    } else {
+      successText.innerHTML = `Dear <em>${name}</em>, we're sorry you can't make it, but we deeply appreciate you letting us know. Your prayers and well-wishes mean the world to us.`;
+    }
+
+    renderRsvps();
+    renderWishes();
+
+    setTimeout(() => {
+      document.getElementById('rsvp-list').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 600);
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.person-card, .detail-item, .contact-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+
+  renderRsvps();
+  renderWishes();
+</script>
+</body>
 </body>
 </html>
