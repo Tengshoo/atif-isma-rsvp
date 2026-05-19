@@ -247,6 +247,7 @@
 
   .person-name {
     font-family: 'Cormorant Garamond', serif;
+    font-style: normal;
     font-size: clamp(1.3rem, 3vw, 1.7rem);
     font-weight: 500;
     color: var(--text-dark);
@@ -641,6 +642,17 @@
     padding: 2rem 0;
     font-family: 'EB Garamond', serif;
   }
+
+  /* MODERN SCROLL-DRIVEN ENTRANCE EFFECTS */
+  .reveal-section {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity 1s cubic-bezier(0.215, 0.61, 0.355, 1), transform 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  .reveal-section.animated {
+    opacity: 1;
+    transform: translateY(0);
+  }
 </style>
 </head>
 <body>
@@ -680,7 +692,7 @@
   <div class="scroll-hint">RSVP</div>
 </section>
 
-<section id="about">
+<section id="about" class="reveal-section">
   <div class="section-inner">
     <div class="section-label">The Couple</div>
     <div class="section-rule"><span>✦</span></div>
@@ -713,7 +725,7 @@
 </section>
 
 
-<section id="wishes-display">
+<section id="wishes-display" class="reveal-section">
   <div class="section-inner" style="padding: 4rem 2rem 2rem;">
     <div class="section-label">Wishes & Dua</div>
     <div class="section-rule"><span>✦</span></div>
@@ -727,7 +739,7 @@
   <div style="height:3rem;"></div>
 </section>
 
-<section class="details-section">
+<section class="details-section reveal-section">
   <div class="section-inner">
     <div class="section-label">Event Details</div>
     <div class="section-rule"><span>✦</span></div>
@@ -775,7 +787,7 @@
   </div>
 </section>
 
-<section class="rsvp-section" id="rsvp">
+<section class="rsvp-section reveal-section" id="rsvp">
   <div class="section-inner">
     <div class="section-label">Your Presence</div>
     <div class="section-rule"><span>✦</span></div>
@@ -840,7 +852,7 @@
   </div>
 </section>
 
-<section id="registry" class="details-section" style="background: rgba(107,112,64,0.03); border-top: 1px solid rgba(107,112,64,0.1);">
+<section id="registry" class="details-section reveal-section" style="background: rgba(107,112,64,0.03); border-top: 1px solid rgba(107,112,64,0.1);">
   <div class="section-inner" style="padding: 4.5rem 2rem; text-align: center;">
     <div class="section-label">Gifting</div>
     <div class="section-rule"><span>✦</span></div>
@@ -873,7 +885,7 @@
   </div>
 </section>
 
-<section id="contact">
+<section id="contact" class="reveal-section">
   <div class="section-inner">
     <div class="section-label">Enquiries</div>
     <div class="section-rule"><span>✦</span></div>
@@ -1061,21 +1073,20 @@
     }, 600);
   };
 
-  // ── SCROLL ANIMATIONS ─────────────────────────────────────────────────
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.style.opacity = '1';
-        e.target.style.transform = 'translateY(0)';
+  // ── MODERN HIGH-PERFORMANCE INTERSECTION OBSERVER ENGINE ──────────────
+  const scrollRevealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animated');
       }
     });
-  }, { threshold: 0.1 });
+  }, { 
+    threshold: 0.05,
+    rootMargin: "0px 0px -8% 0px"
+  });
 
-  document.querySelectorAll('.person-card, .detail-item, .contact-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
+  document.querySelectorAll('.reveal-section').forEach(section => {
+    scrollRevealObserver.observe(section);
   });
 </script>
 </body>
