@@ -147,6 +147,28 @@
     letter-spacing: 0.2em;
     color: var(--text-mid);
     line-height: 1.9;
+    margin-bottom: 2rem;
+  }
+
+  .scroll-hint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: var(--olive-light);
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-top: 1rem;
+    z-index: 5;
+  }
+  .scroll-hint::after {
+    content: '';
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--olive-light), transparent);
   }
 
   /* Botanical SVG leaves */
@@ -654,6 +676,8 @@
     Kingsman Hall Kamalinda<br>
     Glenmarie, Shah Alam
   </div>
+  
+  <div class="scroll-hint">RSVP</div>
 </section>
 
 <section id="about">
