@@ -663,76 +663,6 @@
     outline: none;
   }
 
-  .rsvp-stat { text-align:center; }
-  .rsvp-stat-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.5rem;
-    font-weight: 300;
-    color: var(--olive-dark);
-    line-height: 1;
-    margin-bottom: 0.4rem;
-  }
-  .rsvp-stat-label {
-    font-family: 'Cinzel', serif;
-    font-size: 0.58rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--text-mid);
-  }
-  .rsvp-stat-divider {
-    width: 1px;
-    background: var(--border);
-    align-self: stretch;
-    min-height: 50px;
-  }
-  .rsvp-entry {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 0.25rem;
-    padding: 1.5rem 0;
-    border-bottom: 1px solid rgba(107,112,64,0.1);
-    margin-bottom: 0;
-  }
-  .rsvp-entry-num { display: none; }
-  .rsvp-entry-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.15rem;
-    color: var(--text-dark);
-    font-weight: 500;
-  }
-  .rsvp-entry-phone { display: none; }
-  .rsvp-entry-wishes {
-    font-family: 'EB Garamond', serif;
-    font-size: 0.9rem;
-    font-style: italic;
-    color: var(--text-mid);
-    margin-top: 0.35rem;
-    line-height: 1.5;
-  }
-  .rsvp-entry-guests {
-    font-family: 'Cinzel', serif;
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    color: var(--olive-dark);
-    text-align: center;
-    white-space: nowrap;
-  }
-  .rsvp-badge {
-    display: inline-block;
-    padding: 0.25rem 0.7rem;
-    font-family: 'Cinzel', serif;
-    font-size: 0.55rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    border: 1px solid;
-    margin-top: 0.3rem;
-  }
-  .rsvp-badge.yes { color: var(--olive-dark); border-color: var(--olive-light); background: rgba(107,112,64,0.06); }
-  .rsvp-badge.no  { color: var(--wine); border-color: rgba(122,32,48,0.3); background: rgba(122,32,48,0.04); }
-  #rsvp-list { background: var(--cream); }
-
   /* Wishes ticker — 3 visible, vertical auto-scroll */
   .wishes-ticker-wrap {
     overflow: hidden;
@@ -828,40 +758,6 @@
     Glenmarie, Shah Alam
   </div>
   <a class="scroll-hint" href="#about">RSVP</a>
-</section>
-
-<section id="rsvp-list">
-  <div class="section-inner">
-    <div class="section-label">Guest List</div>
-    <div class="section-rule"><span>✦</span></div>
-    <h2 class="section-title" style="font-size:1.8rem; margin-bottom:0.5rem;">Confirmed RSVPs</h2>
-    <p style="text-align:center; font-style:italic; color:var(--text-mid); margin-bottom:2.5rem; font-size:0.95rem;">
-      Those who have graciously responded to our invitation.
-    </p>
-
-    <div id="rsvp-summary" style="display:flex; justify-content:center; gap:2rem; margin-bottom:2.5rem; flex-wrap:wrap; align-items:center;">
-      <div class="rsvp-stat">
-        <div class="rsvp-stat-num" id="stat-attending">0</div>
-        <div class="rsvp-stat-label">Attending</div>
-      </div>
-      <div class="rsvp-stat-divider"></div>
-      <div class="rsvp-stat">
-        <div class="rsvp-stat-num" id="stat-guests">0</div>
-        <div class="rsvp-stat-label">Total Guests</div>
-      </div>
-      <div class="rsvp-stat-divider"></div>
-      <div class="rsvp-stat">
-        <div class="rsvp-stat-num" id="stat-unable">0</div>
-        <div class="rsvp-stat-label">Unable to Attend</div>
-      </div>
-    </div>
-
-    <div id="rsvp-entries">
-      <div id="rsvp-empty" style="text-align:center; font-style:italic; color:var(--text-mid); padding:3rem 0; border:1px dashed var(--border);">
-        No RSVPs yet — be the first to confirm your attendance.
-      </div>
-    </div>
-  </div>
 </section>
 
 <section id="about">
@@ -1133,58 +1029,12 @@
     ticker.style.animationDuration = duration + 's';
   }
 
-  // ── RENDER RSVP LIST ─────────────────────────────────────────────────
-  function renderRsvps() {
-    const container = document.getElementById('rsvp-entries');
-    const empty = document.getElementById('rsvp-empty');
-    const attending = rsvps.filter(r => r.attendance === 'yes');
-    const unable = rsvps.filter(r => r.attendance === 'no');
-    const totalGuests = attending.reduce((s, r) => s + (Number(r.guests) || 1), 0);
-
-    document.getElementById('stat-attending').textContent = attending.length;
-    document.getElementById('stat-guests').textContent = totalGuests;
-    document.getElementById('stat-unable').textContent = unable.length;
-
-    if (rsvps.length === 0) {
-      if (empty) empty.style.display = 'block';
-      container.querySelectorAll('.rsvp-entry').forEach(el => el.remove());
-      return;
-    }
-    if (empty) empty.style.display = 'none';
-    container.querySelectorAll('.rsvp-entry').forEach(el => el.remove());
-
-    rsvps.forEach((r, i) => {
-      const el = document.createElement('div');
-      el.className = 'rsvp-entry';
-      const wishesHtml = r.wishes ? `<div class="rsvp-entry-wishes">"${r.wishes}"</div>` : '';
-      const guestsHtml = r.attendance === 'yes' ? `<div class="rsvp-entry-guests">${r.guests} pax</div>` : '<div></div>';
-      el.innerHTML = `
-        <div class="rsvp-entry-num">${String(i+1).padStart(2,'0')}</div>
-        <div>
-          <div class="rsvp-entry-name">${r.name}</div>
-          ${wishesHtml}
-          <span class="rsvp-badge ${r.attendance}">${r.attendance === 'yes' ? 'Attending' : 'Unable to Attend'}</span>
-        </div>
-        ${guestsHtml}
-      `;
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(10px)';
-      container.appendChild(el);
-      requestAnimationFrame(() => {
-        el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-        el.style.opacity = '1';
-        el.style.transform = 'translateY(0)';
-      });
-    });
-  }
-
   // ── LIVE LISTENER — updates every visitor in real time ────────────────
   onValue(rsvpsRef, (snapshot) => {
     rsvps = [];
     snapshot.forEach(child => {
       rsvps.push({ id: child.key, ...child.val() });
     });
-    renderRsvps();
     renderWishes();
   });
 
@@ -1236,7 +1086,7 @@
     }
 
     setTimeout(() => {
-      document.getElementById('rsvp-list').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      document.getElementById('rsvp').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }, 600);
   };
 
