@@ -247,7 +247,6 @@
 
   .person-name {
     font-family: 'Cormorant Garamond', serif;
-    font-style: normal;
     font-size: clamp(1.3rem, 3vw, 1.7rem);
     font-weight: 500;
     color: var(--text-dark);
@@ -954,8 +953,8 @@
     }
   }
 
-  // Intercept the very first interaction anywhere on the viewport to play the track seamlessly
-  ['click', 'touchstart', 'scroll', 'touchend'].forEach(eventType => {
+  // Intercepts clicks, scrolls, and instant mobile screen touches seamlessly across iOS and Android systems
+  ['click', 'touchstart', 'pointerdown'].forEach(eventType => {
     document.addEventListener(eventType, startBackgroundMusic, { once: true });
   });
 
