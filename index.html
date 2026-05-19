@@ -149,32 +149,6 @@
     line-height: 1.9;
   }
 
-  .scroll-hint {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    color: var(--olive-light);
-    font-family: 'Cinzel', serif;
-    font-size: 0.6rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    animation: bob 2s ease-in-out infinite;
-    cursor: pointer;
-    text-decoration: none;
-  }
-  .scroll-hint::after {
-    content: '';
-    width: 1px;
-    height: 40px;
-    background: linear-gradient(to bottom, var(--olive-light), transparent);
-  }
-  @keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
-
   /* Botanical SVG leaves */
   .botanical {
     position: absolute;
@@ -583,53 +557,6 @@
   .hero .hero-divider { animation-delay: 0.5s; }
   .hero .hero-date { animation-delay: 0.6s; }
   .hero .hero-venue { animation-delay: 0.7s; }
-  .hero .scroll-hint { animation-delay: 1s; }
-
-  /* Guest count display */
-  .guests-display {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2rem;
-    color: var(--olive-dark);
-    text-align: center;
-    padding: 0.5rem;
-    font-style: italic;
-  }
-
-  .guests-controls {
-    display: flex;
-    align-items: center;
-    gap: 0;
-    background: rgba(255,255,255,0.8);
-    border: 1px solid var(--border);
-    border-bottom: 2px solid var(--olive-light);
-    overflow: hidden;
-  }
-
-  .guests-btn {
-    width: 44px;
-    height: 44px;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    font-size: 1.3rem;
-    color: var(--olive-dark);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    transition: background 0.15s;
-  }
-  .guests-btn:hover { background: rgba(107,112,64,0.1); }
-
-  .guests-count {
-    flex: 1;
-    text-align: center;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.3rem;
-    color: var(--text-dark);
-    font-style: italic;
-    border: none;
-    background: transparent;
-    outline: none;
-  }
 
   /* Wishes ticker — 3 visible, vertical auto-scroll */
   .wishes-ticker-wrap {
@@ -725,7 +652,6 @@
     Kingsman Hall Kamalinda<br>
     Glenmarie, Shah Alam
   </div>
-  <a class="scroll-hint" href="#about">RSVP</a>
 </section>
 
 <section id="about">
@@ -752,7 +678,7 @@
         <div class="person-name">Atif Mat Zuki</div>
         <div class="person-parents">
           Son of<br>
-          Mr. Mat Zuki Isa<br>
+          Mr. Mat Zuki<br>
           & Mrs. Noraini Mahmud
         </div>
       </div>
@@ -878,7 +804,7 @@
 
     <div class="success-msg" id="success-msg">
       <div class="success-icon">✦</div>
-      <div class="success-title">Thank you for the response!</div>
+      <div class="success-title">Terima Kasih!</div>
       <p class="success-text" id="success-text">
         We've received your RSVP and can't wait to celebrate with you.<br>
         May Allah SWT bless this gathering.
@@ -901,7 +827,7 @@
       </svg>
       
       <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--text-dark); line-height: 1.8; font-style: italic; margin-bottom: 2rem;">
-        Your presence is truly the best gift we could ask for. However, if you feel called to give a little something, we've put together a small registry with some of our most wished for items
+        Your presence is truly the best gift we could ask for. But if you feel called to give a little something, we've put together a small registry with some of our most wished for items at Sining Spaces.
       </p>
       
       <div style="background: rgba(255,255,255,0.6); border: 1px solid var(--border); padding: 1.5rem; margin-bottom: 1.5rem;">
