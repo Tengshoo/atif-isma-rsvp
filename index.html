@@ -619,38 +619,11 @@
     padding: 2rem 0;
     font-family: 'EB Garamond', serif;
   }
-
-  /* Audio player aesthetic button style */
-  .audio-control-btn {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    z-index: 999;
-    background: var(--cream-dark);
-    border: 1px solid var(--border);
-    border-radius: 50%;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    color: var(--olive-dark);
-    transition: transform 0.2s, background 0.2s;
-  }
-  .audio-control-btn:hover { transform: scale(1.05); background: #fff; }
 </style>
 </head>
 <body>
 
 <iframe id="audio-engine" src="https://www.youtube.com/embed/KO8yovXmIjw?enablejsapi=1&autoplay=0&loop=1&playlist=KO8yovXmIjw&controls=0" allow="autoplay" style="display:none; position:absolute; width:0; height:0; border:none;"></iframe>
-
-<button class="audio-control-btn" id="music-toggle" onclick="toggleMusic()" aria-label="Toggle Background Music">
-  <svg id="music-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle>
-  </svg>
-</button>
 
 <section class="hero" id="top">
   <svg class="botanical botanical-left" viewBox="0 0 200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -738,7 +711,7 @@
     <div class="details-grid">
       <div class="detail-item">
         <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
-          <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" height="24" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+          <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
         </svg>
         <div class="detail-label">Date</div>
         <div class="detail-value">Friday<br>22 May 2027</div>
@@ -933,50 +906,22 @@
 
   let guestCount = 1;
   let rsvps = [];
-
-  // AUDIO UTILITIES FOR THE INVITATION
-  let isPlaying = false;
   let playerInitialized = false;
 
-  window.toggleMusic = function() {
+  // Background audio engine triggers automatically upon any natural screen interaction
+  function startBackgroundMusic() {
+    if (playerInitialized) return;
     const iframe = document.getElementById('audio-engine');
-    const button = document.getElementById('music-toggle');
-    const icon = document.getElementById('music-icon');
-    
-    if (!playerInitialized) {
-      // First interaction injection to bypass background cross-origin audio limits
+    if (iframe) {
       iframe.src = iframe.src.replace("autoplay=0", "autoplay=1");
       playerInitialized = true;
-      isPlaying = true;
-      button.style.background = "var(--olive)";
-      button.style.color = "var(--cream)";
-      icon.innerHTML = `<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" fill="currentColor" stroke="none"></path>`;
-      return;
     }
+  }
 
-    if (isPlaying) {
-      // Pause API message hook
-      iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-      isPlaying = false;
-      button.style.background = "var(--cream-dark)";
-      button.style.color = "var(--olive-dark)";
-      icon.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>`;
-    } else {
-      // Play API message hook
-      iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-      isPlaying = true;
-      button.style.background = "var(--olive)";
-      button.style.color = "var(--cream)";
-      icon.innerHTML = `<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" fill="currentColor" stroke="none"></path>`;
-    }
-  };
-
-  // Trigger autoplay cleanly on guest's first canvas or button touch gesture
-  document.addEventListener('click', function() {
-    if (!playerInitialized) {
-      toggleMusic();
-    }
-  }, { once: true });
+  // Intercept the very first interaction anywhere on the viewport to play the track seamlessly
+  ['click', 'touchstart', 'scroll', 'touchend'].forEach(eventType => {
+    document.addEventListener(eventType, startBackgroundMusic, { once: true });
+  });
 
   // Expose adjustGuests globally
   window.adjustGuests = function(delta) {
