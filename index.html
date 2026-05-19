@@ -1073,19 +1073,35 @@
   </div>
 </footer>
 
-<script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAOZQGU7wm6e3LWYfBW9ngcqpWQ11cIB0w",
+    authDomain: "atif-ismasari-rsvp.firebaseapp.com",
+    databaseURL: "https://atif-ismasari-rsvp-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "atif-ismasari-rsvp",
+    storageBucket: "atif-ismasari-rsvp.firebasestorage.app",
+    messagingSenderId: "615596137823",
+    appId: "1:615596137823:web:1df367977f213651f1eaea",
+    measurementId: "G-T0D54YSFTL"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  const rsvpsRef = ref(db, 'rsvps');
+
   let guestCount = 1;
-  let rsvps = JSON.parse(localStorage.getItem('wedding_rsvps') || '[]');
+  let rsvps = [];
 
-  function saveRsvps() {
-    try { localStorage.setItem('wedding_rsvps', JSON.stringify(rsvps)); } catch(e) {}
-  }
-
-  function adjustGuests(delta) {
+  // Expose adjustGuests globally
+  window.adjustGuests = function(delta) {
     guestCount = Math.max(1, Math.min(3, guestCount + delta));
     document.getElementById('guests-count').textContent = guestCount;
-  }
+  };
 
+  // Toggle guests field
   document.querySelectorAll('input[name="attendance"]').forEach(radio => {
     radio.addEventListener('change', () => {
       const show = radio.value === 'yes';
@@ -1093,6 +1109,7 @@
     });
   });
 
+  // ── RENDER WISHES TICKER ──────────────────────────────────────────────
   function renderWishes() {
     const ticker = document.getElementById('wishes-ticker');
     const emptyEl = document.getElementById('wishes-empty-ticker');
@@ -1110,7 +1127,7 @@
     ticker.style.display = 'flex';
     ticker.innerHTML = '';
 
-    // Show max 3 visible; duplicate for seamless loop
+    // Duplicate for seamless vertical loop
     const items = withWishes.length < 3
       ? [...withWishes, ...withWishes, ...withWishes].slice(0, Math.max(withWishes.length * 2, 6))
       : [...withWishes, ...withWishes];
@@ -1127,17 +1144,17 @@
       ticker.appendChild(el);
     });
 
-    // Speed: ~6s per item, min 12s
     const duration = Math.max(12, withWishes.length * 6);
     ticker.style.animationDuration = duration + 's';
   }
 
+  // ── RENDER RSVP LIST ─────────────────────────────────────────────────
   function renderRsvps() {
     const container = document.getElementById('rsvp-entries');
     const empty = document.getElementById('rsvp-empty');
     const attending = rsvps.filter(r => r.attendance === 'yes');
     const unable = rsvps.filter(r => r.attendance === 'no');
-    const totalGuests = attending.reduce((s, r) => s + (r.guests || 1), 0);
+    const totalGuests = attending.reduce((s, r) => s + (Number(r.guests) || 1), 0);
 
     document.getElementById('stat-attending').textContent = attending.length;
     document.getElementById('stat-guests').textContent = totalGuests;
@@ -1145,14 +1162,11 @@
 
     if (rsvps.length === 0) {
       if (empty) empty.style.display = 'block';
-      const existing = container.querySelectorAll('.rsvp-entry');
-      existing.forEach(el => el.remove());
+      container.querySelectorAll('.rsvp-entry').forEach(el => el.remove());
       return;
     }
     if (empty) empty.style.display = 'none';
-
-    const existing = container.querySelectorAll('.rsvp-entry');
-    existing.forEach(el => el.remove());
+    container.querySelectorAll('.rsvp-entry').forEach(el => el.remove());
 
     rsvps.forEach((r, i) => {
       const el = document.createElement('div');
@@ -1180,51 +1194,55 @@
     });
   }
 
-  function handleSubmit(e) {
+  // ── LIVE LISTENER — updates every visitor in real time ────────────────
+  onValue(rsvpsRef, (snapshot) => {
+    rsvps = [];
+    snapshot.forEach(child => {
+      rsvps.push({ id: child.key, ...child.val() });
+    });
+    renderRsvps();
+    renderWishes();
+  });
+
+  // ── SUBMIT ────────────────────────────────────────────────────────────
+  window.handleSubmit = function(e) {
     e.preventDefault();
-    const name = document.getElementById('fullname').value.trim();
-    const phone = document.getElementById('phone').value.trim();
+    const name     = document.getElementById('fullname').value.trim();
+    const phone    = document.getElementById('phone').value.trim();
     const attendance = document.querySelector('input[name="attendance"]:checked').value;
-    const wishes = document.getElementById('wishes').value.trim();
+    const wishes   = document.getElementById('wishes').value.trim();
 
     const entry = { name, phone, attendance, guests: guestCount, wishes, time: Date.now() };
-    rsvps.push(entry);
-    saveRsvps();
 
-    // Send to Google Sheets via hidden form (bypasses CORS)
+    // Save to Firebase (triggers live update for everyone)
+    push(rsvpsRef, entry);
+
+    // Also send to Google Sheets
     const iframe = document.createElement('iframe');
     iframe.name = 'hidden_iframe';
     iframe.style.display = 'none';
     document.body.appendChild(iframe);
-
     const form = document.createElement('form');
     form.method = 'POST';
     form.action = 'https://script.google.com/macros/s/AKfycbzldg0JJgGd6dCyGGWxRQEUbADgdRG240TLUhDmSvXj8ZbRT2frhlm6jIvdQerxoObM/exec';
     form.target = 'hidden_iframe';
     form.style.display = 'none';
-
-    const fields = { name, phone, attendance, guests: guestCount, wishes };
-    Object.entries(fields).forEach(([k, v]) => {
+    Object.entries({ name, phone, attendance, guests: guestCount, wishes }).forEach(([k, v]) => {
       const input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = k;
-      input.value = v;
+      input.type = 'hidden'; input.name = k; input.value = v;
       form.appendChild(input);
     });
-
     document.body.appendChild(form);
     form.submit();
-
     setTimeout(() => {
       document.body.removeChild(form);
       document.body.removeChild(iframe);
     }, 3000);
 
-    const formWrapper = document.getElementById('form-wrapper');
+    // Show success
+    document.getElementById('form-wrapper').style.display = 'none';
     const successMsg = document.getElementById('success-msg');
     const successText = document.getElementById('success-text');
-
-    formWrapper.style.display = 'none';
     successMsg.classList.add('show');
 
     if (attendance === 'yes') {
@@ -1233,14 +1251,12 @@
       successText.innerHTML = `Dear <em>${name}</em>, we're sorry you can't make it, but we deeply appreciate you letting us know. Your prayers and well-wishes mean the world to us.`;
     }
 
-    renderRsvps();
-    renderWishes();
-
     setTimeout(() => {
       document.getElementById('rsvp-list').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }, 600);
-  }
+  };
 
+  // ── SCROLL ANIMATIONS ─────────────────────────────────────────────────
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -1256,10 +1272,6 @@
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     observer.observe(el);
   });
-
-  renderRsvps();
-  renderWishes();
 </script>
-</body>
 </body>
 </html>
