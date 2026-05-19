@@ -175,18 +175,6 @@
   }
   @keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
 
-  /* Decorative corner ornaments */
-  .ornament {
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    opacity: 0.2;
-  }
-  .ornament-tl { top: 2rem; left: 2rem; }
-  .ornament-tr { top: 2rem; right: 2rem; transform: scaleX(-1); }
-  .ornament-bl { bottom: 4rem; left: 2rem; transform: scaleY(-1); }
-  .ornament-br { bottom: 4rem; right: 2rem; transform: scale(-1); }
-
   /* Botanical SVG leaves */
   .botanical {
     position: absolute;
@@ -325,26 +313,6 @@
     font-size: 1.15rem;
     color: var(--text-dark);
     line-height: 1.6;
-  }
-
-  /* Dress code */
-  .dress-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    justify-content: center;
-    margin-top: 1.5rem;
-  }
-
-  .dress-tag {
-    padding: 0.5rem 1.25rem;
-    border: 1px solid var(--olive-light);
-    font-family: 'Cinzel', serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--olive-dark);
-    background: rgba(107,112,64,0.05);
   }
 
   /* RSVP Form */
@@ -835,8 +803,11 @@
         <div class="detail-value">Kingsman Hall Kamalinda<br>Glenmarie, Shah Alam</div>
       </div>
       <div class="detail-item">
-        <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
-          <path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.57a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.57a2 2 0 00-1.34-2.23z"/>
+        <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7.5L8 6l4 2.5L16 6l4 1.5M4 7.5v4.5l3.5 1M20 7.5v4.5l-3.5 1" />
+          <path d="M7.5 13v7.5h9V13" />
+          <path d="M12 8.5v12" />
+          <path d="M9.5 11h5" />
         </svg>
         <div class="detail-label">Dress Code</div>
         <div class="detail-value">Traditional Wear<br>Baju Kebaya · Baju Batik</div>
@@ -917,6 +888,38 @@
   </div>
 </section>
 
+<section id="registry" class="details-section" style="background: rgba(107,112,64,0.03); border-top: 1px solid rgba(107,112,64,0.1);">
+  <div class="section-inner" style="padding: 4.5rem 2rem; text-align: center;">
+    <div class="section-label">Gifting</div>
+    <div class="section-rule"><span>✦</span></div>
+    <h2 class="section-title" style="margin-bottom: 1rem;">Gift Registry</h2>
+    
+    <div style="max-width: 540px; margin: 0 auto;">
+      <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" style="margin-bottom: 1.5rem; width: 44px; height: 44px;">
+        <polyline points="22 12 16 12 14 15 10 15 8 12 2 12" />
+        <path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" />
+      </svg>
+      
+      <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--text-dark); line-height: 1.8; font-style: italic; margin-bottom: 2rem;">
+        Your presence is truly the best gift we could ask for. But if you feel called to give a little something, we've put together a small registry with some of our most wished for items at Sining Spaces.
+      </p>
+      
+      <div style="background: rgba(255,255,255,0.6); border: 1px solid var(--border); padding: 1.5rem; margin-bottom: 1.5rem;">
+        <span style="font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.2em; display: block; color: var(--olive-light); margin-bottom: 0.4rem; text-transform: uppercase;">Registry Details</span>
+        <p style="font-family: 'EB Garamond', serif; font-size: 1.05rem; color: var(--text-dark); margin-bottom: 0.5rem;">
+          Email <strong style="color: var(--olive-dark);">hello@reallygreatsite.com</strong> with the subject line below:
+        </p>
+        <p style="font-family: 'Cinzel', serif; font-size: 0.85rem; letter-spacing: 0.1em; font-weight: 500; color: var(--wine);">
+          Registry No. 123-45
+        </p>
+      </div>
+      
+      <p style="font-family: 'EB Garamond', serif; font-size: 0.95rem; font-style: italic; color: var(--text-mid); line-height: 1.6;">
+        Alternatively, if you prefer to support us as we begin our married life, a contribution to our future would mean so much to us. Thank you for being a part of this milestone!
+      </p>
+    </div>
+  </div>
+</section>
 
 <section id="contact">
   <div class="section-inner">
