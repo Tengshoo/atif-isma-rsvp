@@ -702,13 +702,7 @@
     color: var(--text-dark);
     font-weight: 500;
   }
-  .rsvp-entry-phone {
-    font-family: 'EB Garamond', serif;
-    font-size: 0.85rem;
-    color: var(--text-mid);
-    font-style: italic;
-    margin-top: 0.2rem;
-  }
+  .rsvp-entry-phone { display: none; }
   .rsvp-entry-wishes {
     font-family: 'EB Garamond', serif;
     font-size: 0.9rem;
@@ -804,9 +798,7 @@
 </head>
 <body>
 
-<!-- HERO -->
 <section class="hero" id="top">
-  <!-- Botanical SVG decorations -->
   <svg class="botanical botanical-left" viewBox="0 0 200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M100 400 C100 300 40 250 20 150 C0 50 60 0 100 0" stroke="#6b7040" stroke-width="1.5" fill="none"/>
     <ellipse cx="55" cy="180" rx="45" ry="25" fill="#6b7040" transform="rotate(-30 55 180)"/>
@@ -838,11 +830,10 @@
   <a class="scroll-hint" href="#about">RSVP</a>
 </section>
 
-<!-- RSVP LIST -->
 <section id="rsvp-list">
   <div class="section-inner">
     <div class="section-label">Guest List</div>
-    <div class="section-rule"><span>&#10022;</span></div>
+    <div class="section-rule"><span>✦</span></div>
     <h2 class="section-title" style="font-size:1.8rem; margin-bottom:0.5rem;">Confirmed RSVPs</h2>
     <p style="text-align:center; font-style:italic; color:var(--text-mid); margin-bottom:2.5rem; font-size:0.95rem;">
       Those who have graciously responded to our invitation.
@@ -867,13 +858,12 @@
 
     <div id="rsvp-entries">
       <div id="rsvp-empty" style="text-align:center; font-style:italic; color:var(--text-mid); padding:3rem 0; border:1px dashed var(--border);">
-        No RSVPs yet &mdash; be the first to confirm your attendance.
+        No RSVPs yet — be the first to confirm your attendance.
       </div>
     </div>
   </div>
 </section>
 
-<!-- ABOUT COUPLE -->
 <section id="about">
   <div class="section-inner">
     <div class="section-label">The Couple</div>
@@ -889,7 +879,7 @@
         <div class="person-parents">
           Daughter of<br>
           Mr. Ismail Saidin<br>
-          &amp; Mrs. Istijayanti Murais
+          & Mrs. Istijayanti Murais
         </div>
       </div>
       <div class="couple-heart">+</div>
@@ -899,7 +889,7 @@
         <div class="person-parents">
           Son of<br>
           Mr. Mat Zuki<br>
-          &amp; Mrs. Noraini Mahmud
+          & Mrs. Noraini Mahmud
         </div>
       </div>
     </div>
@@ -907,11 +897,10 @@
 </section>
 
 
-<!-- WISHES -->
 <section id="wishes-display">
   <div class="section-inner" style="padding: 4rem 2rem 2rem;">
-    <div class="section-label">Wishes &amp; Dua</div>
-    <div class="section-rule"><span>&#10022;</span></div>
+    <div class="section-label">Wishes & Dua</div>
+    <div class="section-rule"><span>✦</span></div>
   </div>
   <div class="wishes-ticker-wrap" id="wishes-ticker-wrap">
     <div id="wishes-empty-ticker" class="wishes-ticker-empty">
@@ -922,7 +911,6 @@
   <div style="height:3rem;"></div>
 </section>
 
-<!-- EVENT DETAILS -->
 <section class="details-section">
   <div class="section-inner">
     <div class="section-label">Event Details</div>
@@ -968,7 +956,6 @@
   </div>
 </section>
 
-<!-- RSVP -->
 <section class="rsvp-section" id="rsvp">
   <div class="section-inner">
     <div class="section-label">Your Presence</div>
@@ -995,11 +982,11 @@
           <div class="attendance-group">
             <div class="attendance-option">
               <input type="radio" id="attend-yes" name="attendance" value="yes" checked>
-              <label for="attend-yes">✓ &nbsp;With Joy, I'll Attend</label>
+              <label for="attend-yes">✓  With Joy, I'll Attend</label>
             </div>
             <div class="attendance-option">
               <input type="radio" id="attend-no" name="attendance" value="no">
-              <label for="attend-no">✗ &nbsp;Regretfully Unable</label>
+              <label for="attend-no">✗  Regretfully Unable</label>
             </div>
           </div>
         </div>
@@ -1014,7 +1001,7 @@
         </div>
 
         <div class="form-group">
-          <label for="wishes">Your Wishes &amp; Dua</label>
+          <label for="wishes">Your Wishes & Dua</label>
           <textarea id="wishes" placeholder="Share your warmest wishes for the couple…"></textarea>
         </div>
 
@@ -1035,7 +1022,6 @@
 </section>
 
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="section-inner">
     <div class="section-label">Enquiries</div>
@@ -1063,10 +1049,9 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="footer">
   <div class="hero-divider" style="margin-bottom:2rem;"></div>
-  <div class="footer-names">Ismasari &amp; Atif</div>
+  <div class="footer-names">Ismasari & Atif</div>
   <div class="footer-date">22 May 2027 · Kingsman Hall Kamalinda · Glenmarie Shah Alam</div>
   <div style="margin-top:2rem; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1rem; color:var(--text-mid); opacity:0.6;">
     بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
@@ -1177,7 +1162,6 @@
         <div class="rsvp-entry-num">${String(i+1).padStart(2,'0')}</div>
         <div>
           <div class="rsvp-entry-name">${r.name}</div>
-          <div class="rsvp-entry-phone">${r.phone}</div>
           ${wishesHtml}
           <span class="rsvp-badge ${r.attendance}">${r.attendance === 'yes' ? 'Attending' : 'Unable to Attend'}</span>
         </div>
