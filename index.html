@@ -656,7 +656,9 @@
 </head>
 <body>
 
-<iframe id="audio-engine" src="https://www.youtube.com/embed/KO8yovXmIjw?enablejsapi=1&autoplay=0&loop=1&playlist=KO8yovXmIjw&controls=0" allow="autoplay" style="display:none; position:absolute; width:0; height:0; border:none;"></iframe>
+<audio id="audio-engine" loop preload="auto">
+  <source src="https://pub-8994a37a77d54b419a4e8bb2ca6aa94b.r2.dev/Lautan.mp3" type="audio/mpeg">
+</audio>
 
 <section class="hero" id="top">
   <svg class="botanical botanical-left" viewBox="0 0 200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -943,18 +945,21 @@
   let rsvps = [];
   let playerInitialized = false;
 
-  // Background audio engine triggers automatically upon any natural screen interaction
+  // DIRECT RESTRUCTURED NATIVE AUDIO TRIGGERS FOR iOS 
   function startBackgroundMusic() {
     if (playerInitialized) return;
-    const iframe = document.getElementById('audio-engine');
-    if (iframe) {
-      iframe.src = iframe.src.replace("autoplay=0", "autoplay=1");
-      playerInitialized = true;
+    const audio = document.getElementById('audio-engine');
+    if (audio) {
+      audio.play().then(() => {
+        playerInitialized = true;
+      }).catch(err => {
+        console.log("iOS Context blocked immediate native initialization", err);
+      });
     }
   }
 
-  // Intercepts clicks, scrolls, and instant mobile screen touches seamlessly across iOS and Android systems
-  ['click', 'touchstart', 'pointerdown'].forEach(eventType => {
+  // Bind immediate multi-channel touch listeners to catch the very first user canvas gesture on mobile Safari
+  ['click', 'touchstart', 'pointerdown', 'touchend'].forEach(eventType => {
     document.addEventListener(eventType, startBackgroundMusic, { once: true });
   });
 
