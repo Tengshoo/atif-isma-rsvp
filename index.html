@@ -47,30 +47,165 @@
     z-index: 0;
   }
 
-  /* Hero Section */
-  .hero {
+  /* PREMIUM 3D TRI-FOLD WRAPPER SYSTEM */
+  .trifold-container {
     position: relative;
-    min-height: 100vh;
+    width: 100vw;
+    height: 100vh;
+    perspective: 2000px;
+    background: var(--cream-dark);
+    overflow: hidden;
+    z-index: 10;
+  }
+
+  /* Center flap holding the primary text layout */
+  .card-center-panel {
+    position: absolute;
+    inset: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 4rem 2rem;
+    padding: 2rem;
+    background: var(--cream);
+    z-index: 1;
+  }
+
+  /* Left and Right card panels closing on top */
+  .card-flap {
+    position: absolute;
+    top: 0;
+    width: 50vw;
+    height: 100vh;
+    background: var(--cream-dark);
+    border: 1px solid rgba(107,112,64,0.15);
+    z-index: 5;
+    /* SLOW COMPREHENSIVE FLAP ROTATION TRANSITION */
+    transition: transform 3.0s cubic-bezier(0.25, 1, 0.30, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 25px rgba(0,0,0,0.03);
+    backface-visibility: hidden;
+  }
+
+  .card-flap-left {
+    left: 0;
+    transform-origin: left center;
+    border-right: 1px solid var(--border);
+    background-image: radial-gradient(circle at 0% 50%, rgba(107,112,64,0.03) 0%, transparent 70%);
+  }
+
+  .card-flap-right {
+    right: 0;
+    transform-origin: right center;
+    border-left: 1px solid var(--border);
+    background-image: radial-gradient(circle at 100% 50%, rgba(107,112,64,0.03) 0%, transparent 70%);
+  }
+
+  /* Outer cover artwork placeholder lines */
+  .flap-ornament {
+    border: 1px solid var(--border);
+    width: calc(100% - 3rem);
+    height: calc(100% - 3rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
     overflow: hidden;
   }
 
-  .hero::before, .hero::after {
-    content: '';
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    border: 1px solid rgba(107,112,64,0.12);
-    pointer-events: none;
+  .card-flap-left .flap-ornament { margin-left: auto; border-right: none; }
+  .card-flap-right .flap-ornament { margin-right: auto; border-left: none; }
+
+  /* Cover Outer text styling alignment tweaks */
+  .cover-title-left {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.2rem, 3.5vw, 2.2rem);
+    letter-spacing: 0.2em;
+    color: var(--olive-dark);
+    text-transform: uppercase;
+    transform: translateX(1.5rem); /* Keeps content centered relative to framed layout */
   }
-  .hero::before { top: -80px; left: -80px; width: 400px; height: 400px; }
-  .hero::after  { bottom: -80px; right: -80px; width: 350px; height: 350px; }
+
+  .cover-title-right {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.2rem, 3.5vw, 2.2rem);
+    letter-spacing: 0.2em;
+    color: var(--olive-dark);
+    text-transform: uppercase;
+    transform: translateX(-1.5rem);
+  }
+
+  /* ABSOLUTE CENTER EMBEDDED SINGLE AMPERSAND */
+  .center-ampersand-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 6; /* Sits completely on top of both folding panels */
+    pointer-events: none;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--wine);
+    background: var(--cream-dark);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    transition: opacity 1.8s cubic-bezier(0.25, 1, 0.30, 1), transform 3.0s cubic-bezier(0.25, 1, 0.30, 1);
+  }
+
+  /* Trigger classes handled by interaction code down script execution */
+  .trifold-container.open .card-flap-left {
+    transform: rotateY(-145deg);
+  }
+
+  .trifold-container.open .card-flap-right {
+    transform: rotateY(145deg);
+  }
+
+  /* Center ampersand breaks away and fades cleanly */
+  .trifold-container.open .center-ampersand-wrapper {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+
+  /* Hide container background logic smoothly after fold completes */
+  .trifold-container.open {
+    pointer-events: none;
+    background: transparent;
+    transition: background 0.8s ease 3.0s;
+  }
+  
+  .trifold-container.open .card-center-panel {
+    pointer-events: auto;
+  }
+
+  /* Original Hero styles repurposed inside the trifold system layout */
+  .hero-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.96);
+    /* SLOWED DOWN: Changed fade-in from 1.5s to 2.2s */
+    transition: opacity 2.2s ease 0.8s, transform 2.2s ease 0.8s;
+  }
+
+  .trifold-container.open .hero-content {
+    opacity: 1;
+    transform: scale(1);
+  }
 
   .bismillah {
     font-family: 'Cormorant Garamond', serif;
@@ -572,13 +707,14 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  .hero > * { animation: fadeUp 0.9s ease both; }
-  .hero .bismillah { animation-delay: 0.1s; }
-  .hero .hero-label { animation-delay: 0.2s; }
-  .hero .names-wrapper { animation-delay: 0.3s; }
-  .hero .hero-divider { animation-delay: 0.5s; }
-  .hero .hero-date { animation-delay: 0.6s; }
-  .hero .hero-venue { animation-delay: 0.7s; }
+  /* SLOWED DOWN: Increased hero content layout animation duration from 0.9s to 1.5s */
+  .hero > * { animation: fadeUp 1.5s ease both; }
+  .hero .bismillah { animation-delay: 0.2s; }
+  .hero .hero-label { animation-delay: 0.4s; }
+  .hero .names-wrapper { animation-delay: 0.6s; }
+  .hero .hero-divider { animation-delay: 0.9s; }
+  .hero .hero-date { animation-delay: 1.1s; }
+  .hero .hero-venue { animation-delay: 1.3s; }
 
   /* Wishes ticker — 3 visible, vertical auto-scroll */
   .wishes-ticker-wrap {
@@ -591,7 +727,8 @@
   .wishes-ticker {
     display: flex;
     flex-direction: column;
-    animation: ticker-scroll 18s linear infinite;
+    /* SLOWED DOWN: Extended base cycle duration from 18s to 28s for a gentler crawl */
+    animation: ticker-scroll 28s linear infinite;
   }
   .wishes-ticker:hover { animation-play-state: paused; }
   @keyframes ticker-scroll {
@@ -646,7 +783,8 @@
   .reveal-section {
     opacity: 0;
     transform: translateY(35px);
-    transition: opacity 1s cubic-bezier(0.215, 0.61, 0.355, 1), transform 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+    /* SLOWED DOWN: Increased page element transition speed from 1s to 1.6s */
+    transition: opacity 1.6s cubic-bezier(0.215, 0.61, 0.355, 1), transform 1.6s cubic-bezier(0.215, 0.61, 0.355, 1);
   }
   .reveal-section.animated {
     opacity: 1;
@@ -660,38 +798,57 @@
   <source src="Lautan.mp3" type="audio/mpeg">
 </audio>
 
-<section class="hero" id="top">
-  <svg class="botanical botanical-left" viewBox="0 0 200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M100 400 C100 300 40 250 20 150 C0 50 60 0 100 0" stroke="#6b7040" stroke-width="1.5" fill="none"/>
-    <ellipse cx="55" cy="180" rx="45" ry="25" fill="#6b7040" transform="rotate(-30 55 180)"/>
-    <ellipse cx="75" cy="100" rx="40" ry="22" fill="#6b7040" transform="rotate(-15 75 100)"/>
-    <ellipse cx="40" cy="260" rx="38" ry="20" fill="#6b7040" transform="rotate(-40 40 260)"/>
-    <ellipse cx="90" cy="50" rx="30" ry="16" fill="#6b7040" transform="rotate(-10 90 50)"/>
-  </svg>
-  <svg class="botanical botanical-right" viewBox="0 0 200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M100 400 C100 300 40 250 20 150 C0 50 60 0 100 0" stroke="#6b7040" stroke-width="1.5" fill="none"/>
-    <ellipse cx="55" cy="180" rx="45" ry="25" fill="#6b7040" transform="rotate(-30 55 180)"/>
-    <ellipse cx="75" cy="100" rx="40" ry="22" fill="#6b7040" transform="rotate(-15 75 100)"/>
-    <ellipse cx="40" cy="260" rx="38" ry="20" fill="#6b7040" transform="rotate(-40 40 260)"/>
-    <ellipse cx="90" cy="50" rx="30" ry="16" fill="#6b7040" transform="rotate(-10 90 50)"/>
-  </svg>
-
-  <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
-  <div class="hero-label">Walimatul Urus</div>
-  <div class="names-wrapper">
-    <span class="name-bride">Ismasari</span>
-    <span class="name-and">& </span>
-    <span class="name-groom">Atif</span>
-  </div>
-  <div class="hero-divider"></div>
-  <div class="hero-date">22 May 2027</div>
-  <div class="hero-venue">
-    Kingsman Hall Kamalinda<br>
-    Glenmarie, Shah Alam
-  </div>
+<div class="trifold-container" id="main-trifold">
   
-  <div class="scroll-hint">RSVP</div>
-</section>
+  <div class="center-ampersand-wrapper">&</div>
+
+  <div class="card-flap card-flap-left">
+    <div class="flap-ornament">
+      <div class="cover-title-left">Ismasari</div>
+    </div>
+  </div>
+
+  <div class="card-flap card-flap-right">
+    <div class="flap-ornament">
+      <div class="cover-title-right">Atif</div>
+    </div>
+  </div>
+
+  <div class="card-center-panel">
+    <svg class="botanical botanical-left" viewBox="0 0 200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M100 400 C100 300 40 250 20 150 C0 50 60 0 100 0" stroke="#6b7040" stroke-width="1.5" fill="none"/>
+      <ellipse cx="55" cy="180" rx="45" ry="25" fill="#6b7040" transform="rotate(-30 55 180)"/>
+      <ellipse cx="75" cy="100" rx="40" ry="22" fill="#6b7040" transform="rotate(-15 75 100)"/>
+      <ellipse cx="40" cy="260" rx="38" ry="20" fill="#6b7040" transform="rotate(-40 40 260)"/>
+      <ellipse cx="90" cy="50" rx="30" ry="16" fill="#6b7040" transform="rotate(-10 90 50)"/>
+    </svg>
+    <svg class="botanical botanical-right" viewBox="0 0 200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M100 400 C100 300 40 250 20 150 C0 50 60 0 100 0" stroke="#6b7040" stroke-width="1.5" fill="none"/>
+      <ellipse cx="55" cy="180" rx="45" ry="25" fill="#6b7040" transform="rotate(-30 55 180)"/>
+      <ellipse cx="75" cy="100" rx="40" ry="22" fill="#6b7040" transform="rotate(-15 75 100)"/>
+      <ellipse cx="40" cy="260" rx="38" ry="20" fill="#6b7040" transform="rotate(-40 40 260)"/>
+      <ellipse cx="90" cy="50" rx="30" ry="16" fill="#6b7040" transform="rotate(-10 90 50)"/>
+    </svg>
+
+    <div class="hero-content">
+      <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+      <div class="hero-label">Walimatul Urus</div>
+      <div class="names-wrapper">
+        <span class="name-bride">Ismasari</span>
+        <span class="name-and">& </span>
+        <span class="name-groom">Atif</span>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-date">22 May 2027</div>
+      <div class="hero-venue">
+        Kingsman Hall Kamalinda<br>
+        Glenmarie, Shah Alam
+      </div>
+      
+      <div class="scroll-hint">RSVP</div>
+    </div>
+  </div>
+</div>
 
 <section id="about" class="reveal-section">
   <div class="section-inner">
@@ -780,7 +937,7 @@
     </div>
 
     <div style="text-align:center; margin-top:2rem;">
-      <a class="map-link" href="https://maps.google.com/?q=Kingsman+Hall+Kamalinda+Glenmarie+Shah+Alam" target="_blank">
+      <a class="map-link" href="https://maps.google.com" target="_blank">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         View on Map
       </a>
@@ -825,10 +982,10 @@
 
         <div class="form-group" id="guests-field">
           <label>Number of Guests (including yourself)</label>
-          <div class="guests-controls">
-            <button type="button" class="guests-btn" onclick="adjustGuests(-1)">−</button>
-            <span class="guests-count" id="guests-count">1</span>
-            <button type="button" class="guests-btn" onclick="adjustGuests(1)">+</button>
+          <div class="guests-controls" style="display: flex; gap: 0.5rem; align-items: center;">
+            <button type="button" class="guests-btn" onclick="adjustGuests(-1)" style="padding: 0.5rem 1rem; border: 1px solid var(--border); background: #fff; cursor: pointer;">−</button>
+            <span class="guests-count" id="guests-count" style="min-width: 2rem; text-align: center; font-family: 'Cinzel', serif;">1</span>
+            <button type="button" class="guests-btn" onclick="adjustGuests(1)" style="padding: 0.5rem 1rem; border: 1px solid var(--border); background: #fff; cursor: pointer;">+</button>
           </div>
         </div>
 
@@ -945,8 +1102,15 @@
   let rsvps = [];
   let playerInitialized = false;
 
-  // DIRECT RESTRUCTURED NATIVE AUDIO TRIGGERS FOR iOS 
-  function startBackgroundMusic() {
+  // SYSTEM INTERACTION: TRIGGER TRI-FOLD CARD & MUSIC IN CONCURRENT EVENT 
+  function openInvitationAndPlayMusic() {
+    // 1. Animate Tri-Fold Panel Open
+    const trifoldContainer = document.getElementById('main-trifold');
+    if (trifoldContainer) {
+      trifoldContainer.classList.add('open');
+    }
+
+    // 2. Play Looping Track
     if (playerInitialized) return;
     const audio = document.getElementById('audio-engine');
     if (audio) {
@@ -958,9 +1122,9 @@
     }
   }
 
-  // Bind immediate multi-channel touch listeners to catch the very first user canvas gesture on mobile Safari
-  ['click', 'touchstart', 'pointerdown', 'touchend'].forEach(eventType => {
-    document.addEventListener(eventType, startBackgroundMusic, { once: true });
+  // Intercept the very first touch gesture across any device viewport matrix to activate card opening sequence
+  ['click', 'touchstart', 'pointerdown', 'touchend', 'scroll'].forEach(eventType => {
+    document.addEventListener(eventType, openInvitationAndPlayMusic, { once: true });
   });
 
   // Expose adjustGuests globally
@@ -1012,7 +1176,8 @@
       ticker.appendChild(el);
     });
 
-    const duration = Math.max(12, withWishes.length * 6);
+    // SLOWED DOWN: Adjusted calculation base multiplier from 6 to 9 to match slower tick speed dynamically
+    const duration = Math.max(16, withWishes.length * 9);
     ticker.style.animationDuration = duration + 's';
   }
 
