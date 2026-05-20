@@ -9,6 +9,17 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  /* LOADING THE CUSTOM MALIBU RING FONT LAYER */
+  @font-face {
+    font-family: 'Malibu Ring';
+    src: url('Malibu Ring.woff2') format('woff2'),
+         url('Malibu Ring.woff') format('woff'),
+         url('Malibu Ring.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
   :root {
     --cream: #f7f4ee;
     --cream-dark: #ede9df;
@@ -125,22 +136,20 @@
   .card-flap-left .flap-ornament { margin-left: auto; border-right: none; }
   .card-flap-right .flap-ornament { margin-right: auto; border-left: none; }
 
-  /* Cover Outer text styling alignment tweaks */
+  /* Cover Outer text styling alignment tweaks using Malibu Ring font */
   .cover-title-left {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(1.2rem, 3.5vw, 2.2rem);
-    letter-spacing: 0.2em;
+    font-family: 'Malibu Ring', 'Cinzel', serif;
+    font-size: clamp(1.6rem, 5vw, 3.2rem); /* Adjusted for cursive-style proportions */
+    letter-spacing: 0.05em;
     color: var(--olive-dark);
-    text-transform: uppercase;
     transform: translateX(1.5rem); /* Keeps content centered relative to framed layout */
   }
 
   .cover-title-right {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(1.2rem, 3.5vw, 2.2rem);
-    letter-spacing: 0.2em;
+    font-family: 'Malibu Ring', 'Cinzel', serif;
+    font-size: clamp(1.6rem, 5vw, 3.2rem);
+    letter-spacing: 0.05em;
     color: var(--olive-dark);
-    text-transform: uppercase;
     transform: translateX(-1.5rem);
   }
 
@@ -704,10 +713,10 @@
     .attendance-group { grid-template-columns: 1fr; }
     .botanical { display: none; }
     
-    /* CRITICAL FIX: Disable text transformations entirely on mobile layout views */
+    /* CRITICAL FIX: Disable layout shifts and fit font bounds onto narrow screen flaps */
     .cover-title-left, .cover-title-right {
       transform: none !important;
-      font-size: clamp(1.1rem, 4.5vw, 1.5rem); /* Prevents overlapping */
+      font-size: clamp(1.4rem, 6.5vw, 2.2rem) !important;
     }
   }
 
