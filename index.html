@@ -78,8 +78,6 @@
     top: 0;
     width: 50vw;
     height: 100vh;
-    background: var(--cream-dark);
-    border: 1px solid rgba(107,112,64,0.15);
     z-index: 5;
     /* SLOW COMPREHENSIVE FLAP ROTATION TRANSITION */
     transition: transform 3.0s cubic-bezier(0.25, 1, 0.30, 1);
@@ -88,23 +86,29 @@
     justify-content: center;
     box-shadow: 0 0 25px rgba(0,0,0,0.03);
     backface-visibility: hidden;
+    
+    /* ASSET INTEGRATION: Map your uploaded floral SVG across left/right halves */
+    background-image: url('Background Physical card.svg');
+    background-size: 100vw 100vh; /* Scales uniformly across entire screen width */
+    background-repeat: no-repeat;
+    background-color: var(--cream-dark);
   }
 
   .card-flap-left {
     left: 0;
     transform-origin: left center;
     border-right: 1px solid var(--border);
-    background-image: radial-gradient(circle at 0% 50%, rgba(107,112,64,0.03) 0%, transparent 70%);
+    background-position: left top;
   }
 
   .card-flap-right {
     right: 0;
     transform-origin: right center;
     border-left: 1px solid var(--border);
-    background-image: radial-gradient(circle at 100% 50%, rgba(107,112,64,0.03) 0%, transparent 70%);
+    background-position: right top;
   }
 
-  /* Outer cover artwork placeholder lines */
+  /* Outer cover artwork layout framework lines */
   .flap-ornament {
     border: 1px solid var(--border);
     width: calc(100% - 3rem);
@@ -937,7 +941,7 @@
     </div>
 
     <div style="text-align:center; margin-top:2rem;">
-      <a class="map-link" href="https://www.google.com/maps/place/KAMALINDA+EVENTS+%26+WEDDINGS/@3.0917357,101.5581861,17.75z/data=!4m10!1m2!2m1!1skingsman+hall+kamalinda!3m6!1s0x31cc4d9fc5e6ee25:0x8a5b07031e882c7b!8m2!3d3.0903744!4d101.5597045!15sChdraW5nc21hbiBoYWxsIGthbWFsaW5kYVoZIhdraW5nc21hbiBoYWxsIGthbWFsaW5kYZIBD3dlZGRpbmdfcGxhbm5lcpoBRENpOURRVWxSUVVOdlpFTm9kSGxqUmpsdlQyMUpkRlJyZURSWlZteEtVVk14V2s5SFVsZGpiR3cyWkZWUmQxSldSUkFC4AEA-gEECAAQRA!16s%2Fg%2F11smbk4_q_?entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D" target="_blank">
+      <a class="map-link" href="https://maps.google.com" target="_blank">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         View on Map
       </a>
@@ -971,11 +975,11 @@
           <div class="attendance-group">
             <div class="attendance-option">
               <input type="radio" id="attend-yes" name="attendance" value="yes" checked>
-              <label for="attend-yes">✓  With Joy, I'll Attend</label>
+              <label for="attend-yes">✓  With Joy, I'll Attend</label>
             </div>
             <div class="attendance-option">
               <input type="radio" id="attend-no" name="attendance" value="no">
-              <label for="attend-no">✗  Regretfully Unable</label>
+              <label for="attend-no">✗  Regretfully Unable</label>
             </div>
           </div>
         </div>
@@ -1176,7 +1180,6 @@
       ticker.appendChild(el);
     });
 
-    // SLOWED DOWN: Adjusted calculation base multiplier from 6 to 9 to match slower tick speed dynamically
     const duration = Math.max(16, withWishes.length * 9);
     ticker.style.animationDuration = duration + 's';
   }
