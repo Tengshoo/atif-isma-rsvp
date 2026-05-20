@@ -694,7 +694,7 @@
   }
   .map-link:hover { background: var(--wine); color: var(--cream); }
 
-  /* Responsive */
+  /* Responsive Layout Fixes */
   @media (max-width: 600px) {
     .couple-grid { grid-template-columns: 1fr; gap: 1rem; }
     .couple-heart { display: none; }
@@ -703,6 +703,12 @@
     .contact-grid { grid-template-columns: 1fr; }
     .attendance-group { grid-template-columns: 1fr; }
     .botanical { display: none; }
+    
+    /* CRITICAL FIX: Disable text transformations entirely on mobile layout views */
+    .cover-title-left, .cover-title-right {
+      transform: none !important;
+      font-size: clamp(1.1rem, 4.5vw, 1.5rem); /* Prevents overlapping */
+    }
   }
 
   /* Entrance animations */
