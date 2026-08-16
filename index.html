@@ -100,7 +100,7 @@
     
     /* ASSET INTEGRATION: Map your uploaded floral SVG across left/right halves */
     background-image: url('Background Physical card.svg');
-    background-size: 100vw 100vh; /* Scales uniformly across entire screen width */
+    background-size: 200% 100%;
     background-repeat: no-repeat;
     background-color: var(--cream-dark);
   }
@@ -109,14 +109,14 @@
     left: 0;
     transform-origin: left center;
     border-right: 1px solid var(--border);
-    background-position: left top;
+    background-position: left center;
   }
 
   .card-flap-right {
     right: 0;
     transform-origin: right center;
     border-left: 1px solid var(--border);
-    background-position: right top;
+    background-position: right center;
   }
 
   /* Outer cover artwork layout framework lines */
@@ -901,7 +901,6 @@
   </div>
 </section>
 
-
 <section id="wishes-display" class="reveal-section">
   <div class="section-inner" style="padding: 4rem 2rem 2rem;">
     <div class="section-label">Wishes & Dua</div>
@@ -1211,10 +1210,10 @@
   // ── SUBMIT ────────────────────────────────────────────────────────────
   window.handleSubmit = function(e) {
     e.preventDefault();
-    const name     = document.getElementById('fullname').value.trim();
-    const phone    = document.getElementById('phone').value.trim();
+    const name      = document.getElementById('fullname').value.trim();
+    const phone     = document.getElementById('phone').value.trim();
     const attendance = document.querySelector('input[name="attendance"]:checked').value;
-    const wishes   = document.getElementById('wishes').value.trim();
+    const wishes    = document.getElementById('wishes').value.trim();
 
     const entry = { name, phone, attendance, guests: guestCount, wishes, time: Date.now() };
 
