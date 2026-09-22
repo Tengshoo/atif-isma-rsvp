@@ -735,7 +735,7 @@
     border-color: var(--border-subtle);
   }
 
-  /* Carousel Navigation Hints */
+  /* Carousel Navigation & Indicators */
   .carousel-controls {
     display: flex;
     align-items: center;
@@ -1587,13 +1587,15 @@
 
   if (carousel) {
     carousel.addEventListener('scroll', updateActiveTile, { passive: true });
-    // Initialize focus on middle card
-    setTimeout(() => {
+    
+    // Centers the 2nd tile inside the carousel without shifting the page window
+    requestAnimationFrame(() => {
       if (tiles[1]) {
-        tiles[1].scrollIntoView({ behavior: 'auto', inline: 'center', block: 'nearest' });
+        const offset = tiles[1].offsetLeft - (carousel.clientWidth / 2) + (tiles[1].clientWidth / 2);
+        carousel.scrollLeft = offset;
       }
       updateActiveTile();
-    }, 400);
+    });
   }
 
   // ── REGISTRY INTERACTION HANDLER ──────────────────────────────────────
