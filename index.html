@@ -45,7 +45,7 @@
     padding-bottom: 85px; /* Clearance for floating dock */
   }
 
-  /* Subtle bespoke pinstripe overlay */
+  /* Bespoke pinstripe overlay */
   body::before {
     content: '';
     position: fixed;
@@ -56,6 +56,46 @@
     background-size: 40px 100%, 100% 100%;
     pointer-events: none;
     z-index: 0;
+  }
+
+  /* ── DUAL PILL LANGUAGE SWITCHER ── */
+  .lang-switch-wrap {
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    z-index: 1005;
+    background: rgba(11, 18, 30, 0.90);
+    border: 1px solid var(--border-gold);
+    border-radius: 24px;
+    display: flex;
+    padding: 3px;
+    gap: 3px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  }
+
+  .lang-opt {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    padding: 0.35rem 0.65rem;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  .lang-opt:hover {
+    color: var(--gold-light);
+  }
+
+  .lang-opt.active {
+    background: var(--gold);
+    color: var(--navy-midnight);
+    font-weight: 600;
   }
 
   /* 3D TRI-FOLD SYSTEM */
@@ -110,7 +150,6 @@
     border-left: 1px solid var(--gold-dark);
   }
 
-  /* Tailored Pinstripe Panel Frames */
   .flap-ornament {
     border: 1px solid var(--border-gold);
     width: calc(100% - 3.5rem);
@@ -154,7 +193,6 @@
     transform: translateX(-1.5rem);
   }
 
-  /* Signet Ring Style Ampersand Seal */
   .center-ampersand-wrapper {
     position: absolute;
     top: 50%;
@@ -641,7 +679,6 @@
     user-select: none;
   }
 
-  /* Highlighted Focused Card */
   .registry-tile.is-focused {
     opacity: 1;
     transform: scale(1.03);
@@ -1130,6 +1167,12 @@
   <source src="Lautan.mp3" type="audio/mpeg">
 </audio>
 
+<!-- DUAL LANGUAGE SWITCH (EN / BM) -->
+<div class="lang-switch-wrap">
+  <button type="button" class="lang-opt active" id="btn-lang-en" onclick="setLanguage('en')">EN</button>
+  <button type="button" class="lang-opt" id="btn-lang-bm" onclick="setLanguage('bm')">BM</button>
+</div>
+
 <div class="trifold-container" id="main-trifold">
   
   <div class="center-ampersand-wrapper">&</div>
@@ -1161,14 +1204,14 @@
 
     <div class="hero-content">
       <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
-      <div class="hero-label">The Wedding Celebration Of</div>
+      <div class="hero-label" data-i18n="hero-label">The Wedding Celebration Of</div>
       <div class="names-wrapper">
         <span class="name-bride">Ismasari</span>
         <span class="name-and">&</span>
         <span class="name-groom">Atif</span>
       </div>
       <div class="hero-divider"></div>
-      <div class="hero-date">22 May 2027</div>
+      <div class="hero-date" data-i18n="hero-date">22 May 2027</div>
       <div class="hero-venue">
         Kingsman Hall Kamalinda<br>
         Glenmarie, Shah Alam
@@ -1179,9 +1222,10 @@
   </div>
 </div>
 
+<!-- THE COUPLE SECTION -->
 <section id="about" class="reveal-section">
   <div class="section-inner">
-    <div class="section-label">The Couple</div>
+    <div class="section-label" data-i18n="couple-label">The Couple</div>
     <div class="section-rule"><span>◆</span></div>
     <p style="text-align:center; font-style:italic; color: var(--text-secondary); line-height:1.9; font-size:1.05rem; max-width:520px; margin: 0 auto 3rem;">
       By the Grace of Allah SWT, as our beloved daughter begins a beautiful new chapter in life, we warmly invite you to celebrate this joyous union with us.
@@ -1189,9 +1233,9 @@
 
     <div class="couple-grid">
       <div class="person-card">
-        <div class="person-role">The Bride</div>
+        <div class="person-role" data-i18n="role-bride">The Bride</div>
         <div class="person-name">Ismasari Ismail</div>
-        <div class="person-parents">
+        <div class="person-parents" data-i18n="parents-bride">
           Daughter of<br>
           Mr. Ismail Saidin<br>
           & Mrs. Istijayanti Murais
@@ -1199,9 +1243,9 @@
       </div>
       <div class="couple-heart">&</div>
       <div class="person-card">
-        <div class="person-role">The Groom</div>
+        <div class="person-role" data-i18n="role-groom">The Groom</div>
         <div class="person-name">Atif Mat Zuki</div>
-        <div class="person-parents">
+        <div class="person-parents" data-i18n="parents-groom">
           Son of<br>
           Mr. Mat Zuki Isa<br>
           & Mrs. Noraini Mahmud
@@ -1211,23 +1255,10 @@
   </div>
 </section>
 
-<section id="wishes-display" class="reveal-section">
-  <div class="section-inner" style="padding: 4rem 2rem 2rem;">
-    <div class="section-label">Wishes & Dua</div>
-    <div class="section-rule"><span>◆</span></div>
-  </div>
-  <div class="wishes-ticker-wrap" id="wishes-ticker-wrap">
-    <div id="wishes-empty-ticker" class="wishes-ticker-empty">
-      Wishes from loved ones will appear here.
-    </div>
-    <div class="wishes-ticker" id="wishes-ticker" style="display:none;"></div>
-  </div>
-  <div style="height:3rem;"></div>
-</section>
-
+<!-- EVENT DETAILS SECTION -->
 <section class="details-section reveal-section">
   <div class="section-inner">
-    <div class="section-label">Event Details</div>
+    <div class="section-label" data-i18n="event-details-label">Event Details</div>
     <div class="section-rule"><span>◆</span></div>
 
     <div class="details-grid">
@@ -1235,21 +1266,21 @@
         <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
           <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
         </svg>
-        <div class="detail-label">Date</div>
-        <div class="detail-value">Saturday<br>22 May 2027</div>
+        <div class="detail-label" data-i18n="detail-date-label">Date</div>
+        <div class="detail-value" data-i18n="detail-date-val">Saturday<br>22 May 2027</div>
       </div>
       <div class="detail-item">
         <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
           <circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 15.5 15.5"/>
         </svg>
-        <div class="detail-label">Time</div>
-        <div class="detail-value">Lunch Reception<br>11:30 AM — 4:00 PM</div>
+        <div class="detail-label" data-i18n="detail-time-label">Time</div>
+        <div class="detail-value" data-i18n="detail-time-val">Lunch Reception<br>11:30 AM — 4:00 PM</div>
       </div>
       <div class="detail-item">
         <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
           <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
         </svg>
-        <div class="detail-label">Venue</div>
+        <div class="detail-label" data-i18n="detail-venue-label">Venue</div>
         <div class="detail-value">Kingsman Hall Kamalinda<br>Glenmarie, Shah Alam</div>
       </div>
       <div class="detail-item">
@@ -1259,57 +1290,74 @@
           <path d="M12 8.5v12" />
           <path d="M9.5 11h5" />
         </svg>
-        <div class="detail-label">Dress Code</div>
-        <div class="detail-value">Formal & Traditional Attire<br>Baju Batik · Baju Melayu · Kebaya · Baju Kurung</div>
+        <div class="detail-label" data-i18n="detail-dress-label">Dress Code</div>
+        <div class="detail-value" data-i18n="detail-dress-val">Formal & Traditional Attire<br>Baju Batik · Baju Melayu · Kebaya · Baju Kurung</div>
       </div>
     </div>
 
+    <!-- Direct Google Maps Link -->
     <div style="text-align:center; margin-top:2rem;">
-      <a class="map-link" href="https://maps.google.com" target="_blank">
+      <a class="map-link" href="https://maps.app.goo.gl/LD96XQYow87rpBQZ7" target="_blank" rel="noopener noreferrer">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        View on Map
+        <span data-i18n="view-map">View on Map</span>
       </a>
     </div>
   </div>
 </section>
 
+<!-- WISHES & PRAYERS DISPLAY (BELOW EVENT DETAILS) -->
+<section id="wishes-display" class="reveal-section">
+  <div class="section-inner" style="padding: 4rem 2rem 2rem;">
+    <div class="section-label" data-i18n="wishes-label">Wishes & Prayers</div>
+    <div class="section-rule"><span>◆</span></div>
+  </div>
+  <div class="wishes-ticker-wrap" id="wishes-ticker-wrap">
+    <div id="wishes-empty-ticker" class="wishes-ticker-empty" data-i18n="empty-wishes">
+      Wishes from loved ones will appear here.
+    </div>
+    <div class="wishes-ticker" id="wishes-ticker" style="display:none;"></div>
+  </div>
+  <div style="height:3rem;"></div>
+</section>
+
+<!-- RSVP SECTION -->
 <section class="rsvp-section reveal-section" id="rsvp">
   <div class="section-inner">
-    <div class="section-label">Your Presence</div>
+    <div class="section-label" data-i18n="rsvp-label">Your Presence</div>
     <div class="section-rule"><span>◆</span></div>
-    <h2 class="section-title" style="margin-bottom:0.5rem;">Reserve Your Seat</h2>
-    <p style="text-align:center; font-style:italic; color:var(--text-secondary); margin-bottom:3rem; font-size:1.05rem;">
+    <h2 class="section-title" style="margin-bottom:0.5rem;" data-i18n="rsvp-title">Reserve Your Seat</h2>
+    <p style="text-align:center; font-style:italic; color:var(--text-secondary); margin-bottom:3rem; font-size:1.05rem;" data-i18n="rsvp-subtitle">
       We look forward to celebrating this occasion with you. Kindly confirm your attendance below.
     </p>
 
     <div id="form-wrapper">
       <form class="rsvp-form" onsubmit="handleSubmit(event)">
         <div class="form-group">
-          <label for="fullname">Full Name</label>
-          <input type="text" id="fullname" placeholder="Your name" required>
+          <label for="fullname" data-i18n="form-name-label">Full Name</label>
+          <input type="text" id="fullname" placeholder="Your full name" required data-i18n-placeholder="form-name-ph">
         </div>
 
         <div class="form-group">
-          <label for="phone">Phone Number</label>
+          <label for="phone" data-i18n="form-phone-label">Phone Number</label>
           <input type="tel" id="phone" placeholder="+60 1X XXXX XXXX" required>
         </div>
 
         <div class="form-group">
-          <label>Attendance</label>
+          <label data-i18n="form-attendance-label">Attendance</label>
           <div class="attendance-group">
             <div class="attendance-option">
               <input type="radio" id="attend-yes" name="attendance" value="yes" checked>
-              <label for="attend-yes">Delighted to Attend</label>
+              <label for="attend-yes" data-i18n="form-attend-yes">Delighted to Attend</label>
             </div>
             <div class="attendance-option">
               <input type="radio" id="attend-no" name="attendance" value="no">
-              <label for="attend-no">Sending Regrets</label>
+              <label for="attend-no" data-i18n="form-attend-no">Sending Regrets</label>
             </div>
           </div>
         </div>
 
         <div class="form-group" id="guests-field">
-          <label>Number of Guests (including yourself)</label>
+          <label data-i18n="form-guests-label">Number of Guests (including yourself)</label>
           <div class="guests-controls" style="display: flex; gap: 0.5rem; align-items: center;">
             <button type="button" class="guests-btn" onclick="adjustGuests(-1)" style="padding: 0.5rem 1rem; border: 1px solid var(--border-gold); background: var(--navy-card); color: var(--gold); cursor: pointer;">−</button>
             <span class="guests-count" id="guests-count" style="min-width: 2rem; text-align: center; font-family: 'Cinzel', serif; color: var(--gold-light);">1</span>
@@ -1318,17 +1366,17 @@
         </div>
 
         <div class="form-group">
-          <label for="wishes">Wishes & Prayers</label>
-          <textarea id="wishes" placeholder="Share your warmest prayers for the couple…"></textarea>
+          <label for="wishes" data-i18n="form-wishes-label">Wishes & Prayers</label>
+          <textarea id="wishes" placeholder="Share your warmest prayers for the couple…" data-i18n-placeholder="form-wishes-ph"></textarea>
         </div>
 
-        <button type="submit" class="submit-btn">Confirm RSVP</button>
+        <button type="submit" class="submit-btn" data-i18n="form-submit">Confirm RSVP</button>
       </form>
     </div>
 
     <div class="success-msg" id="success-msg">
       <div class="success-icon">◆</div>
-      <div class="success-title">Thank You</div>
+      <div class="success-title" data-i18n="success-title">Thank You</div>
       <p class="success-text" id="success-text">
         We have received your response and look forward to celebrating with you.<br>
         May Allah SWT bless this gathering.
@@ -1341,12 +1389,12 @@
 <!-- SCROLLABLE FOCUSED REGISTRY CAROUSEL -->
 <section id="registry" class="details-section reveal-section" style="background: var(--navy-card); border-top: 1px solid var(--border-subtle);">
   <div class="section-inner" style="padding: 5rem 1rem; text-align: center;">
-    <div class="section-label">Gifting</div>
+    <div class="section-label" data-i18n="registry-label">Gifting</div>
     <div class="section-rule"><span>◆</span></div>
-    <h2 class="section-title" style="margin-bottom: 1rem;">Curated Gift Registry</h2>
+    <h2 class="section-title" style="margin-bottom: 1rem;" data-i18n="registry-title">Curated Gift Registry</h2>
     
     <div style="max-width: 620px; margin: 0 auto;">
-      <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--text-primary); line-height: 1.8; font-style: italic; margin-bottom: 2rem;">
+      <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--text-primary); line-height: 1.8; font-style: italic; margin-bottom: 2rem;" data-i18n="registry-desc">
         Your presence and prayers remain our most cherished gift. For family and guests who have expressed a kind desire to honour us with a keepsake for our home, swipe through our selection below:
       </p>
     </div>
@@ -1357,45 +1405,45 @@
         
         <!-- Tile 1: Knives Set -->
         <div class="registry-tile" data-index="0">
-          <span class="registry-badge">Kitchen</span>
-          <div class="registry-item-title">Bespoke Chef Knife Set</div>
-          <div class="registry-item-desc">High-carbon steel precision culinary set with block.</div>
+          <span class="registry-badge" data-i18n="cat-kitchen">Kitchen</span>
+          <div class="registry-item-title" data-i18n="item-1-title">Bespoke Chef Knife Set</div>
+          <div class="registry-item-desc" data-i18n="item-1-desc">High-carbon steel precision culinary set with block.</div>
           <div class="registry-actions">
-            <a href="https://s.shopee.com.my/5VVWyMvRfY" target="_blank" rel="noopener noreferrer" class="registry-link-btn">
+            <a href="https://s.shopee.com.my/5VVWyMvRfY" target="_blank" rel="noopener noreferrer" class="registry-link-btn" data-i18n="view-shopee">
               View on Shopee ↗
             </a>
             <button type="button" class="registry-claim-btn" id="claim-btn-1" onclick="toggleGiftClaim(1, 'Bespoke Chef Knife Set')">
-              Mark as Gifting
+              <span class="btn-text" data-i18n="mark-gift">Mark as Gifting</span>
             </button>
           </div>
         </div>
 
         <!-- Tile 2: Bedsheet Cover Set -->
         <div class="registry-tile" data-index="1">
-          <span class="registry-badge">Home Living</span>
-          <div class="registry-item-title">Luxury Bedding & Cover Set</div>
-          <div class="registry-item-desc">Silky smooth sateen weave cotton duvet and sheet ensemble.</div>
+          <span class="registry-badge" data-i18n="cat-home">Home Living</span>
+          <div class="registry-item-title" data-i18n="item-2-title">Luxury Bedding & Cover Set</div>
+          <div class="registry-item-desc" data-i18n="item-2-desc">Silky smooth sateen weave cotton duvet and sheet ensemble.</div>
           <div class="registry-actions">
-            <a href="https://s.shopee.com.my/9zxwKkjBag" target="_blank" rel="noopener noreferrer" class="registry-link-btn">
+            <a href="https://s.shopee.com.my/9zxwKkjBag" target="_blank" rel="noopener noreferrer" class="registry-link-btn" data-i18n="view-shopee">
               View on Shopee ↗
             </a>
             <button type="button" class="registry-claim-btn" id="claim-btn-2" onclick="toggleGiftClaim(2, 'Luxury Bedding Set')">
-              Mark as Gifting
+              <span class="btn-text" data-i18n="mark-gift">Mark as Gifting</span>
             </button>
           </div>
         </div>
 
         <!-- Tile 3: Chopping Board -->
         <div class="registry-tile" data-index="2">
-          <span class="registry-badge">Kitchenware</span>
-          <div class="registry-item-title">End-Grain Wood Chopping Board</div>
-          <div class="registry-item-desc">Handcrafted durable hardwood cutting board for daily preparation.</div>
+          <span class="registry-badge" data-i18n="cat-kitchenware">Kitchenware</span>
+          <div class="registry-item-title" data-i18n="item-3-title">End-Grain Wood Chopping Board</div>
+          <div class="registry-item-desc" data-i18n="item-3-desc">Handcrafted durable hardwood cutting board for daily preparation.</div>
           <div class="registry-actions">
-            <a href="https://s.shopee.com.my/30oC0565SA" target="_blank" rel="noopener noreferrer" class="registry-link-btn">
+            <a href="https://s.shopee.com.my/30oC0565SA" target="_blank" rel="noopener noreferrer" class="registry-link-btn" data-i18n="view-shopee">
               View on Shopee ↗
             </a>
             <button type="button" class="registry-claim-btn" id="claim-btn-3" onclick="toggleGiftClaim(3, 'Wood Chopping Board')">
-              Mark as Gifting
+              <span class="btn-text" data-i18n="mark-gift">Mark as Gifting</span>
             </button>
           </div>
         </div>
@@ -1416,33 +1464,34 @@
 
     <!-- Alternative Contribution Note -->
     <div style="max-width: 540px; margin: 0 auto; border-top: 1px solid var(--border-subtle); padding-top: 2rem;">
-      <p style="font-family: 'EB Garamond', serif; font-size: 0.95rem; font-style: italic; color: var(--text-secondary); line-height: 1.7;">
+      <p style="font-family: 'EB Garamond', serif; font-size: 0.95rem; font-style: italic; color: var(--text-secondary); line-height: 1.7;" data-i18n="registry-alt">
         Alternatively, if you prefer to bless us with a personal contribution as we embark on this journey together, your dua and gesture are received with our deepest gratitude.
       </p>
     </div>
   </div>
 </section>
 
+<!-- CONTACT SECTION -->
 <section id="contact" class="reveal-section">
   <div class="section-inner">
-    <div class="section-label">Enquiries</div>
+    <div class="section-label" data-i18n="contact-label">Enquiries</div>
     <div class="section-rule"><span>◆</span></div>
-    <div class="section-title" style="font-size:1.8rem; margin-bottom:0.5rem;">Contact Us</div>
-    <p style="text-align:center; font-style:italic; color:var(--text-secondary); font-size:0.95rem;">For inquiries, please feel free to reach out to the family.</p>
+    <div class="section-title" style="font-size:1.8rem; margin-bottom:0.5rem;" data-i18n="contact-title">Contact Us</div>
+    <p style="text-align:center; font-style:italic; color:var(--text-secondary); font-size:0.95rem;" data-i18n="contact-desc">For inquiries, please feel free to reach out to the family.</p>
 
     <div class="contact-grid">
       <div class="contact-card">
-        <div class="contact-role">Bride's Father</div>
+        <div class="contact-role" data-i18n="role-b-father">Bride's Father</div>
         <div class="contact-name">Ismail Saidin</div>
         <a class="contact-phone" href="tel:+60163945710">+6016 3945 710</a>
       </div>
       <div class="contact-card">
-        <div class="contact-role">Bride's Brother</div>
+        <div class="contact-role" data-i18n="role-b-brother">Bride's Brother</div>
         <div class="contact-name">Adzhar</div>
         <a class="contact-phone" href="tel:+601111238405">+6011 1123 8405</a>
       </div>
       <div class="contact-card">
-        <div class="contact-role">Bride's Brother</div>
+        <div class="contact-role" data-i18n="role-b-brother">Bride's Brother</div>
         <div class="contact-name">Nizam</div>
         <a class="contact-phone" href="tel:+601165624260">+6011 6562 4260</a>
       </div>
@@ -1450,10 +1499,11 @@
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer class="footer">
   <div class="hero-divider" style="margin-bottom:2rem;"></div>
   <div class="footer-names">Ismasari & Atif</div>
-  <div class="footer-date">22 May 2027 · Kingsman Hall Kamalinda · Glenmarie Shah Alam</div>
+  <div class="footer-date" data-i18n="footer-date">22 May 2027 · Kingsman Hall Kamalinda · Glenmarie Shah Alam</div>
   <div style="margin-top:2rem; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.1rem; color:var(--gold-light); opacity:0.8;">
     بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
   </div>
@@ -1468,30 +1518,30 @@
 
   <button type="button" class="dock-item" onclick="openDockSheet('wishlist')">
     <svg viewBox="0 0 24 24"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
-    <span>Wishlist</span>
+    <span data-i18n="dock-wishlist">Wishlist</span>
   </button>
 
   <button type="button" class="dock-item" onclick="openDockSheet('contact')">
     <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-    <span>Contact</span>
+    <span data-i18n="dock-contact">Contact</span>
   </button>
 
   <button type="button" class="dock-item" onclick="openDockSheet('location')">
     <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-    <span>Location</span>
+    <span data-i18n="dock-location">Location</span>
   </button>
 
   <button type="button" class="dock-item" onclick="openDockSheet('calendar')">
     <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-    <span>Calendar</span>
+    <span data-i18n="dock-calendar">Calendar</span>
   </button>
 </nav>
 
-<!-- MODAL OVERLAY SHEET[cite: 2] -->
+<!-- DOCK MODAL BOTTOM SHEET[cite: 2] -->
 <div class="dock-modal-backdrop" id="dock-backdrop" onclick="closeDockSheet()"></div>
 <div class="dock-modal-card" id="dock-modal-card">
   <div id="dock-modal-content"></div>
-  <button type="button" class="dock-close-btn" onclick="closeDockSheet()">Close</button>
+  <button type="button" class="dock-close-btn" onclick="closeDockSheet()" data-i18n="modal-close">Close</button>
 </div>
 
 <script type="module">
@@ -1516,6 +1566,171 @@
   let guestCount = 1;
   let rsvps = [];
   let playerInitialized = false;
+
+  // ── MULTI-LANGUAGE CONTROLLER & TRANSLATIONS ──
+  let currentLang = 'en';
+
+  const translations = {
+    en: {
+      'hero-label': 'The Wedding Celebration Of',
+      'hero-date': '22 May 2027',
+      'couple-label': 'The Couple',
+      'role-bride': 'The Bride',
+      'parents-bride': 'Daughter of<br>Mr. Ismail Saidin<br>& Mrs. Istijayanti Murais',
+      'role-groom': 'The Groom',
+      'parents-groom': 'Son of<br>Mr. Mat Zuki Isa<br>& Mrs. Noraini Mahmud',
+      'wishes-label': 'Wishes & Prayers',
+      'empty-wishes': 'Wishes from loved ones will appear here.',
+      'event-details-label': 'Event Details',
+      'detail-date-label': 'Date',
+      'detail-date-val': 'Saturday<br>22 May 2027',
+      'detail-time-label': 'Time',
+      'detail-time-val': 'Lunch Reception<br>11:30 AM — 4:00 PM',
+      'detail-venue-label': 'Venue',
+      'detail-dress-label': 'Dress Code',
+      'detail-dress-val': 'Formal & Traditional Attire<br>Baju Batik · Baju Melayu · Kebaya · Baju Kurung',
+      'view-map': 'View on Map',
+      'rsvp-label': 'Your Presence',
+      'rsvp-title': 'Reserve Your Seat',
+      'rsvp-subtitle': 'We look forward to celebrating this occasion with you. Kindly confirm your attendance below.',
+      'form-name-label': 'Full Name',
+      'form-name-ph': 'Your full name',
+      'form-phone-label': 'Phone Number',
+      'form-attendance-label': 'Attendance',
+      'form-attend-yes': 'Delighted to Attend',
+      'form-attend-no': 'Sending Regrets',
+      'form-guests-label': 'Number of Guests (including yourself)',
+      'form-wishes-label': 'Wishes & Prayers',
+      'form-wishes-ph': 'Share your warmest prayers for the couple…',
+      'form-submit': 'Confirm RSVP',
+      'success-title': 'Thank You',
+      'registry-label': 'Gifting',
+      'registry-title': 'Curated Gift Registry',
+      'registry-desc': 'Your presence and prayers remain our most cherished gift. For family and guests who have expressed a kind desire to honour us with a keepsake for our home, swipe through our selection below:',
+      'cat-kitchen': 'Kitchen',
+      'cat-home': 'Home Living',
+      'cat-kitchenware': 'Kitchenware',
+      'item-1-title': 'Bespoke Chef Knife Set',
+      'item-1-desc': 'High-carbon steel precision culinary set with block.',
+      'item-2-title': 'Luxury Bedding & Cover Set',
+      'item-2-desc': 'Silky smooth sateen weave cotton duvet and sheet ensemble.',
+      'item-3-title': 'End-Grain Wood Chopping Board',
+      'item-3-desc': 'Handcrafted durable hardwood cutting board for daily preparation.',
+      'view-shopee': 'View on Shopee ↗',
+      'mark-gift': 'Mark as Gifting',
+      'marked-gift': '✓ Marked as Gifting',
+      'registry-alt': 'Alternatively, if you prefer to bless us with a personal contribution as we embark on this journey together, your dua and gesture are received with our deepest gratitude.',
+      'contact-label': 'Enquiries',
+      'contact-title': 'Contact Us',
+      'contact-desc': 'For inquiries, please feel free to reach out to the family.',
+      'role-b-father': "Bride's Father",
+      'role-b-brother': "Bride's Brother",
+      'footer-date': '22 May 2027 · Kingsman Hall Kamalinda · Glenmarie Shah Alam',
+      'dock-wishlist': 'Wishlist',
+      'dock-contact': 'Contact',
+      'dock-location': 'Location',
+      'dock-calendar': 'Calendar',
+      'modal-close': 'Close'
+    },
+    bm: {
+      'hero-label': 'Walimatul Urus',
+      'hero-date': '22 Mei 2027',
+      'couple-label': 'Mempelai',
+      'role-bride': 'Pengantin Perempuan',
+      'parents-bride': 'Puteri kepada<br>Encik Ismail Saidin<br>& Puan Istijayanti Murais',
+      'role-groom': 'Pengantin Lelaki',
+      'parents-groom': 'Putera kepada<br>Encik Mat Zuki Isa<br>& Puan Noraini Mahmud',
+      'wishes-label': 'Ucapan & Doa',
+      'empty-wishes': 'Ucapan daripada sanak saudara dan sahabat handai akan dipaparkan di sini.',
+      'event-details-label': 'Butiran Majlis',
+      'detail-date-label': 'Tarikh',
+      'detail-date-val': 'Sabtu<br>22 Mei 2027',
+      'detail-time-label': 'Masa',
+      'detail-time-val': 'Jamuan Makan Tengah Hari<br>11:30 Pagi — 4:00 Petang',
+      'detail-venue-label': 'Lokasi',
+      'detail-dress-label': 'Etika Pakaian',
+      'detail-dress-val': 'Pakaian Tradisional & Formal<br>Baju Batik · Baju Melayu · Kebaya · Baju Kurung',
+      'view-map': 'Lihat Peta',
+      'rsvp-label': 'Kehadiran',
+      'rsvp-title': 'Sahkan Kehadiran',
+      'rsvp-subtitle': 'Kehadiran anda amat bermakna bagi kami sekeluarga. Sila maklumkan kehadiran anda di bawah.',
+      'form-name-label': 'Nama Penuh',
+      'form-name-ph': 'Nama penuh anda',
+      'form-phone-label': 'Nombor Telefon',
+      'form-attendance-label': 'Kehadiran',
+      'form-attend-yes': 'Hadir',
+      'form-attend-no': 'Tidak Hadir',
+      'form-guests-label': 'Jumlah Kehadiran (termasuk diri anda)',
+      'form-wishes-label': 'Ucapan & Doa',
+      'form-wishes-ph': 'Titipkan doa dan ucapan buat mempelai…',
+      'form-submit': 'Hantar RSVP',
+      'success-title': 'Terima Kasih',
+      'registry-label': 'Hadiah',
+      'registry-title': 'Senarai Hadiah Pilihan',
+      'registry-desc': 'Kehadiran dan doa anda adalah kurniaan terindah buat kami. Bagi tetamu yang berhasrat menghadiahkan cenderahati buat kediaman baru kami, anda boleh melayari pilihan di bawah:',
+      'cat-kitchen': 'Dapur',
+      'cat-home': 'Kediaman',
+      'cat-kitchenware': 'Peralatan Dapur',
+      'item-1-title': 'Set Pisau Chef Eksklusif',
+      'item-1-desc': 'Set pisau keluli berkarbon tinggi beserta blok simpanan.',
+      'item-2-title': 'Set Cadar & Sarung Mewah',
+      'item-2-desc': 'Koleksi selimut dan cadar kapas tenunan sateen yang selesa.',
+      'item-3-title': 'Papan Pemotong Kayu End-Grain',
+      'item-3-desc': 'Papan pemotong kayu padu buatan tangan tahan lasak.',
+      'view-shopee': 'Lihat di Shopee ↗',
+      'mark-gift': 'Tanda Hadiah',
+      'marked-gift': '✓ Ditandakan',
+      'registry-alt': 'Sebagai alternatif, sekiranya anda ingin memberi sumbangan untuk membina fasa hidup baru kami, doa dan ingatan anda amat kami hargai.',
+      'contact-label': 'Pertanyaan',
+      'contact-title': 'Hubungi Kami',
+      'contact-desc': 'Untuk sebarang pertanyaan, sila hubungi pihak keluarga.',
+      'role-b-father': 'Bapa Pengantin',
+      'role-b-brother': 'Abang Pengantin',
+      'footer-date': '22 Mei 2027 · Kingsman Hall Kamalinda · Glenmarie Shah Alam',
+      'dock-wishlist': 'Hadiah',
+      'dock-contact': 'Hubungi',
+      'dock-location': 'Lokasi',
+      'dock-calendar': 'Kalendar',
+      'modal-close': 'Tutup'
+    }
+  };
+
+  window.setLanguage = function(lang) {
+    currentLang = lang;
+
+    // Toggle active state classes on the dual pill buttons
+    document.getElementById('btn-lang-en').classList.toggle('active', currentLang === 'en');
+    document.getElementById('btn-lang-bm').classList.toggle('active', currentLang === 'bm');
+
+    // Update text elements tagged with data-i18n
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[currentLang] && translations[currentLang][key]) {
+        el.innerHTML = translations[currentLang][key];
+      }
+    });
+
+    // Update placeholder text
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (translations[currentLang] && translations[currentLang][key]) {
+        el.setAttribute('placeholder', translations[currentLang][key]);
+      }
+    });
+
+    // Update registry claim buttons
+    [1, 2, 3].forEach(id => {
+      const btn = document.getElementById(`claim-btn-${id}`);
+      if (btn) {
+        const textSpan = btn.querySelector('.btn-text');
+        if (btn.classList.contains('claimed')) {
+          if (textSpan) textSpan.textContent = translations[currentLang]['marked-gift'];
+        } else {
+          if (textSpan) textSpan.textContent = translations[currentLang]['mark-gift'];
+        }
+      }
+    });
+  };
 
   function openInvitationAndPlayMusic() {
     const trifoldContainer = document.getElementById('main-trifold');
@@ -1604,17 +1819,22 @@
     if (!btn) return;
 
     const isClaimed = btn.classList.contains('claimed');
+    const textSpan = btn.querySelector('.btn-text');
 
     if (!isClaimed) {
-      const confirmAction = confirm(`Would you like to mark "${itemName}" as your intended gift?`);
+      const confirmMsg = currentLang === 'en'
+        ? `Would you like to mark "${itemName}" as your intended gift?`
+        : `Adakah anda ingin menanda "${itemName}" sebagai hadiah pilihan anda?`;
+
+      const confirmAction = confirm(confirmMsg);
       if (confirmAction) {
         btn.classList.add('claimed');
-        btn.innerHTML = '✓ Marked as Gifting';
+        if (textSpan) textSpan.textContent = translations[currentLang]['marked-gift'];
         localStorage.setItem(`registry_claimed_${itemId}`, 'true');
       }
     } else {
       btn.classList.remove('claimed');
-      btn.innerHTML = 'Mark as Gifting';
+      if (textSpan) textSpan.textContent = translations[currentLang]['mark-gift'];
       localStorage.removeItem(`registry_claimed_${itemId}`);
     }
   };
@@ -1625,12 +1845,43 @@
       const btn = document.getElementById(`claim-btn-${id}`);
       if (btn) {
         btn.classList.add('claimed');
-        btn.innerHTML = '✓ Marked as Gifting';
+        const textSpan = btn.querySelector('.btn-text');
+        if (textSpan) textSpan.textContent = translations[currentLang]['marked-gift'];
       }
     }
   });
 
-  // ── INTERACTIVE DOCK MODAL CONTROLLER[cite: 2] ─────────────────
+  // ── APPLE CALENDAR (.ICS) FILE GENERATOR ───────────────
+  window.downloadAppleCalendar = function() {
+    const icsData = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//Ismasari & Atif//Walimatul Urus//EN',
+      'CALSCALE:GREGORIAN',
+      'METHOD:PUBLISH',
+      'BEGIN:VEVENT',
+      'UID:wedding-ismasari-atif-2027@walimatulurus',
+      'DTSTAMP:20270522T033000Z',
+      'DTSTART:20270522T033000Z',
+      'DTEND:20270522T080000Z',
+      'SUMMARY:Walimatul Urus Ismasari & Atif',
+      'DESCRIPTION:Majlis Perkahwinan Ismasari Ismail & Atif Mat Zuki',
+      'LOCATION:Kingsman Hall Kamalinda, Glenmarie, Shah Alam',
+      'STATUS:CONFIRMED',
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].join('\r\n');
+
+    const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.setAttribute('download', 'Walimatul_Urus_Ismasari_Atif.ics');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  // ── INTERACTIVE DOCK MODAL CONTROLLER[cite: 2, 4] ─────────────────
   const backdrop = document.getElementById('dock-backdrop');
   const modalContent = document.getElementById('dock-modal-content');
 
@@ -1651,31 +1902,57 @@
     let html = '';
 
     if (type === 'contact') {
+      const title = currentLang === 'en' ? 'Contact Family' : 'Hubungi Keluarga';
+      const sub = currentLang === 'en' ? 'Direct contact & WhatsApp' : 'Panggilan terus & WhatsApp';
+      const roleFather = currentLang === 'en' ? "Bride's Father" : "Bapa Pengantin";
+      const roleBrother = currentLang === 'en' ? "Bride's Brother" : "Abang Pengantin";
+
       html = `
-        <div class="dock-modal-title">Hubungi Keluarga</div>
-        <div class="dock-modal-subtitle">Tap below to call or WhatsApp</div>
+        <div class="dock-modal-title">${title}</div>
+        <div class="dock-modal-subtitle">${sub}</div>
         <div class="dock-action-row">
-          <a href="https://wa.me/60163945710" target="_blank" class="dock-action-btn">WhatsApp Ismail (Bapa Pengantin)</a>
-          <a href="https://wa.me/601111238405" target="_blank" class="dock-action-btn">WhatsApp Adzhar (Abang)</a>
-          <a href="https://wa.me/601165624260" target="_blank" class="dock-action-btn">WhatsApp Nizam (Abang)</a>
+          <a href="https://wa.me/60163945710" target="_blank" rel="noopener noreferrer" class="dock-action-btn">
+            Ismail Saidin (${roleFather}) · +6016 3945 710
+          </a>
+          <a href="https://wa.me/601111238405" target="_blank" rel="noopener noreferrer" class="dock-action-btn">
+            Adzhar (${roleBrother}) · +6011 1123 8405
+          </a>
+          <a href="https://wa.me/601165624260" target="_blank" rel="noopener noreferrer" class="dock-action-btn">
+            Nizam (${roleBrother}) · +6011 6562 4260
+          </a>
         </div>
       `;
     } else if (type === 'location') {
+      const title = currentLang === 'en' ? 'Location & Navigation' : 'Pandu Arah Lokasi';
       html = `
-        <div class="dock-modal-title">Pandu Arah Lokasi</div>
+        <div class="dock-modal-title">${title}</div>
         <div class="dock-modal-subtitle">Kingsman Hall Kamalinda, Glenmarie Shah Alam</div>
         <div class="dock-action-row">
-          <a href="https://maps.google.com/?q=Kingsman+Hall+Kamalinda" target="_blank" class="dock-action-btn">Google Maps</a>
-          <a href="https://waze.com/ul?q=Kingsman+Hall+Kamalinda" target="_blank" class="dock-action-btn">Waze Navigation</a>
+          <a href="https://maps.app.goo.gl/LD96XQYow87rpBQZ7" target="_blank" rel="noopener noreferrer" class="dock-action-btn">
+            Google Maps
+          </a>
+          <a href="https://ul.waze.com/ul?venue_id=66584607.665583925.20871982&overview=yes&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location" target="_blank" rel="noopener noreferrer" class="dock-action-btn">
+            Waze Navigation
+          </a>
         </div>
       `;
     } else if (type === 'calendar') {
+      const title = currentLang === 'en' ? 'Save the Date' : 'Simpan Tarikh';
+      const sub = currentLang === 'en' ? 'Saturday, 22 May 2027 (11:30 AM — 4:00 PM)' : 'Sabtu, 22 Mei 2027 (11:30 Pagi — 4:00 Petang)';
+      const gcal = currentLang === 'en' ? 'Add to Google Calendar' : 'Tambah ke Google Calendar';
+      const apple = currentLang === 'en' ? 'Add to Apple Calendar' : 'Tambah ke Apple Calendar';
       const gCalUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Walimatul+Urus+Ismasari+%26+Atif&dates=20270522T033000Z/20270522T080000Z&details=Majlis+Perkahwinan+Ismasari+%26+Atif&location=Kingsman+Hall+Kamalinda,+Glenmarie";
+      
       html = `
-        <div class="dock-modal-title">Simpan Tarikh</div>
-        <div class="dock-modal-subtitle">Sabtu, 22 Mei 2027 (11:30 AM — 4:00 PM)</div>
+        <div class="dock-modal-title">${title}</div>
+        <div class="dock-modal-subtitle">${sub}</div>
         <div class="dock-action-row">
-          <a href="${gCalUrl}" target="_blank" class="dock-action-btn">Add to Google Calendar</a>
+          <a href="${gCalUrl}" target="_blank" rel="noopener noreferrer" class="dock-action-btn">
+            ${gcal}
+          </a>
+          <button type="button" class="dock-action-btn" onclick="downloadAppleCalendar()">
+            ${apple}
+          </button>
         </div>
       `;
     }
@@ -1767,9 +2044,13 @@
     successMsg.classList.add('show');
 
     if (attendance === 'yes') {
-      successText.innerHTML = `We have received your RSVP, <em>${name}</em>. It will be our pleasure to celebrate with you.<br><br>May Allah SWT bless this gathering and grant a lifetime of peace and happiness.`;
+      successText.innerHTML = currentLang === 'en'
+        ? `We have received your RSVP, <em>${name}</em>. It will be our pleasure to celebrate with you.<br><br>May Allah SWT bless this gathering and grant a lifetime of peace and happiness.`
+        : `Kami telah menerima RSVP anda, <em>${name}</em>. Amat berbesar hati untuk meraikan hari bahagia ini bersama anda.<br><br>Semoga Allah SWT memberkati majlis ini.`;
     } else {
-      successText.innerHTML = `Dear <em>${name}</em>, we appreciate you letting us know. Your prayers and warm regards are deeply valued.`;
+      successText.innerHTML = currentLang === 'en'
+        ? `Dear <em>${name}</em>, we appreciate you letting us know. Your prayers and warm regards are deeply valued.`
+        : `Buat <em>${name}</em>, terima kasih kerana memaklumkan kepada kami. Doa dan ingatan tulus anda amat kami hargai.`;
     }
 
     setTimeout(() => {
